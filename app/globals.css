@@ -20,33 +20,190 @@
 @media(max-width:680px){html{scroll-padding-top:91px}.container{width:calc(100% - 40px)}.header-inner{min-height:88px;gap:12px}.brand img{width:88px;height:auto}.header-book{margin-left:auto;font-size:15px;padding:10px 14px;min-height:42px;order:2}.mobile-toggle{display:flex;order:3;margin-right:-9px}.main-nav{display:none;position:absolute;left:0;right:0;top:88px;background:var(--green);padding:15px 25px 25px;border-top:1px solid #547044;font-size:15px}.main-nav.expanded{display:flex;flex-direction:column;align-items:stretch;gap:0}.main-nav>a{padding:13px 0}.main-nav .order-link{display:flex}.hero-wrap{padding-top:22px}.hero{display:flex;flex-direction:column;min-height:0}.hero-photo{height:auto;aspect-ratio:1.38}.hero-photo img{object-fit:cover}.hero-copy{padding:32px 27px 36px}.hero h1{font-size:65px;line-height:1;margin:16px 0 20px}.hero h1 br{display:none}.hero h1 br:after{content:' '}.hero h1{word-spacing:-2px}.hero-intro{font-size:25px;margin-bottom:18px}.hero-intro br{display:none}.hero-copy>p:not(.eyebrow):not(.hero-intro){font-size:16px;max-width:none}.hero-copy .eyebrow{font-size:11px;letter-spacing:1.5px}.hero-actions{flex-direction:row;align-items:center;gap:22px;margin-top:23px}.hero-actions .button{width:auto;font-size:15px;padding:12px 15px;gap:12px}.hero-actions .text-link{font-size:15px}.visit-strip{flex-direction:column;align-items:flex-start;justify-content:center;gap:11px;padding-block:22px;min-height:0;font-size:14px}.visit-strip>a:first-child>svg{display:none}.opening-status{gap:9px}.food-section{padding:40px 0 26px}.section-heading{display:block;margin-bottom:24px}.section-heading h2{font-size:40px}.section-heading .eyebrow{font-size:11px}.section-heading>.text-link{margin-top:16px;font-size:15px}.gallery-rail{gap:14px}.gallery-image{flex-basis:83%;height:335px}.gallery-enlarge{opacity:1}.gallery-bottom{gap:13px;margin-top:16px}.gallery-bottom>p{font-size:18px;max-width:180px;line-height:1.3}.gallery-controls{gap:5px}.gallery-controls .icon-button{width:38px;height:38px}.about-section{padding:38px 20px}.about-card{padding:34px 25px 38px}.about-card h2{font-size:45px}.about-card .eyebrow{font-size:11px;letter-spacing:1.7px}.about-card>p:not(.eyebrow){font-size:16px;line-height:1.85}.about-card .button{font-size:15px}.site-footer{padding-top:36px}.footer-grid{grid-template-columns:1fr 1fr;gap:30px 22px}.footer-grid>section{min-width:0}.footer-hours{grid-column:1/-1;max-width:none}.footer-grid h2{font-size:24px;margin-bottom:16px}.footer-grid p,.footer-grid a,.footer-grid button{font-size:14px}.footer-grid .phone-link{font-size:16px}.footer-grid .text-link{gap:7px}.footer-grid>section:last-child{grid-column:1/-1;display:flex;flex-wrap:wrap;column-gap:22px;align-items:center}.footer-grid>section:last-child h2{width:100%;margin-bottom:10px}.social-link{gap:8px}.footer-bottom{margin-top:25px;font-size:12px;padding-block:20px}.dialog{padding:35px 25px;max-height:calc(100dvh - 28px)}.dialog h2{font-size:45px}.dialog .eyebrow{font-size:10px;letter-spacing:1.5px}.dialog-close{top:8px;right:8px}.lightbox{padding:65px 44px}.lightbox-prev{left:0}.lightbox-next{right:0}.lightbox figcaption{font-size:10px;line-height:1.5}.menu-heading{padding-top:23px}.breadcrumb{margin-bottom:24px}.menu-title-row h1{font-size:52px;margin-top:12px}.menu-title-row .eyebrow{font-size:11px}.menu-title-row p:not(.eyebrow){font-size:16px}.menu-tools{gap:10px;padding-block:18px}.category-field select{font-size:16px;width:100%;min-width:0}.favourites-toggle{font-size:15px;padding-inline:11px;gap:7px}.category-field{min-width:0}.dish-grid{grid-template-columns:1fr}.menu-category{margin-top:27px}.menu-category h2{font-size:32px}.dish{min-height:83px;gap:16px}.dish h3{font-size:18px}.dish-price{font-size:19px}.menu-note{font-size:14px}.menu-order{padding:25px;flex-direction:column;align-items:start}.menu-order h2{font-size:31px}.menu-order .button{font-size:16px}.menu-content{padding-bottom:38px}.assistant-dialog{padding:0}.assistant-header{padding:32px 27px 23px}.assistant-body{padding:25px 27px}.assistant-header h2{font-size:40px}.conversation{max-height:40dvh}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
 
-/* Integrated services use the restaurant's live Wix forms, so staff keep one inbox. */
+/* Secondary links follow the original restrained styling. */
 .kitchen-links{display:flex;gap:26px;align-items:center;flex-wrap:wrap}
-.service-page{background:var(--cream);height:100dvh;display:flex;flex-direction:column;overflow:hidden}
-.service-toolbar{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:15px 30px;background:var(--green);color:var(--cream);font-size:15px;flex-shrink:0;border-bottom:1px solid #47633b}
-.service-toolbar h1{font-size:29px;white-space:nowrap}
-.service-toolbar>a{display:flex;align-items:center;gap:9px;text-decoration:underline;text-underline-offset:4px}
-.service-frame{width:100%;flex:1;min-height:0;display:block;border:0;background:var(--gold)}
-.service-loading{font-size:14px;padding:9px 24px;background:var(--gold);color:var(--green);flex-shrink:0}
-.service-loading a{text-decoration:underline}
-.service-footnote{padding:12px 30px;background:#f1e9d9;font-size:13px;line-height:1.6;flex-shrink:0}
-.service-footnote p+p{margin-top:3px}
-.service-footnote a,.service-footnote button{text-decoration:underline;text-underline-offset:3px}
-.service-footnote button{padding:0;font:inherit}
 .assistant-quick-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
 .assistant-quick-links a{border:1px solid var(--line);padding:8px 12px;font-size:15px}
 .assistant-body .button{margin-top:20px}
 @media(max-width:1150px){.footer-grid{grid-template-columns:1fr 1fr;gap:36px 65px}.footer-hours{max-width:340px}.header-inner{gap:20px}.main-nav{gap:20px}.dish-grid{column-gap:32px}}
 @media(max-width:900px){.header-inner{gap:16px}.main-nav{gap:16px;font-size:14px}.kitchen-links{gap:15px}.dish h3{font-size:17px}.dish{gap:8px}.hero-actions{gap:16px}}
-@media(max-width:680px){.main-nav{font-size:17px}.header-book{font-size:14px}.header-inner{gap:8px}.hero-actions{gap:18px}.hero-actions .button{font-size:14px}.hero-actions .text-link{font-size:14px}.footer-grid{gap:30px;grid-template-columns:1fr}.footer-hours{max-width:none}.footer-grid>section:last-child{column-gap:22px}.menu-title-row h1{font-size:52px}.dish{gap:10px;padding-block:20px;min-height:96px}.dish h3{font-size:17px}.dish-price{font-size:18px}.favourites-toggle{font-size:14px}.category-field{flex-basis:100%}.favourites-toggle{min-height:44px;padding-inline:14px}.menu-meta{gap:12px}.kitchen-links{margin-top:20px;align-items:start;gap:16px;flex-direction:column}.service-toolbar{padding:12px 15px;gap:10px;flex-wrap:wrap;font-size:13px}.service-toolbar h1{font-size:26px;order:-1;width:100%}.service-footnote{padding:10px 15px;font-size:12px}.service-footnote>p:first-child{display:none}.service-toolbar .service-return{margin-right:auto}.assistant-dialog{max-width:500px}.assistant-header h2{font-size:40px}}
+@media(max-width:680px){.main-nav{font-size:17px}.header-book{font-size:14px}.header-inner{gap:8px}.hero-actions{gap:18px}.hero-actions .button{font-size:14px}.hero-actions .text-link{font-size:14px}.footer-grid{gap:30px;grid-template-columns:1fr}.footer-hours{max-width:none}.footer-grid>section:last-child{column-gap:22px}.menu-title-row h1{font-size:52px}.dish{gap:10px;padding-block:20px;min-height:96px}.dish h3{font-size:17px}.dish-price{font-size:18px}.favourites-toggle{font-size:14px}.category-field{flex-basis:100%}.favourites-toggle{min-height:44px;padding-inline:14px}.menu-meta{gap:12px}.kitchen-links{margin-top:20px;align-items:start;gap:16px;flex-direction:column}.assistant-dialog{max-width:500px}.assistant-header h2{font-size:40px}}
 
-.service-direct{height:auto;min-height:100dvh;overflow:visible}
-.service-handoff{width:calc(100% - 40px);max-width:500px;margin:42px auto 50px;text-align:center}
-.service-handoff>img{margin:0 auto 32px}
-.service-handoff .eyebrow{font-size:11px}
-.service-handoff h2{font-size:48px;margin:18px 0 24px}
-.service-handoff>p:not(.eyebrow){font-size:17px;line-height:1.8}
-.service-handoff>.button{width:100%;margin:28px 0 17px;min-height:54px}
-.service-handoff>p.small{font-size:14px;color:var(--muted)}
-.handoff-contact{border-top:1px solid var(--line);padding-top:25px;margin-top:28px;font-size:15px}
-.handoff-contact .text-link{margin-top:7px}
+/* Takeaway and reservations share the menu's paper, type and spacing. */
+.native-service-page{padding-bottom:65px}
+.native-service-heading .menu-title-row>.text-link{margin-bottom:7px;white-space:nowrap}
+.native-service-heading .breadcrumb{opacity:1;color:var(--muted)}
+.native-service-heading .breadcrumb a:hover{text-decoration:underline;text-underline-offset:3px}
+.service-notice{display:flex;align-items:baseline;gap:20px;background:#f2e6cd;border-block:1px solid #dfcda9;padding:15px 21px;margin-bottom:36px;font-size:15px;line-height:1.7}
+.service-notice .eyebrow{flex-shrink:0;font-size:11px;letter-spacing:1.4px}
+.service-notice a{display:inline-flex;align-items:center;gap:6px;text-decoration:underline;text-underline-offset:3px;white-space:nowrap;margin-left:5px}
+.takeaway-layout{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:56px;align-items:start}
+.takeaway-menu{min-width:0}
+.takeaway-menu .menu-tools{padding-block:18px;gap:12px}
+.takeaway-menu input[type=search]::-webkit-search-cancel-button{appearance:none}
+.takeaway-menu .category-field select{width:205px}
+.takeaway-menu .menu-category:first-child{margin-top:20px}
+.takeaway-dish{gap:22px;min-height:96px}
+.dish-actions{flex-shrink:0}
+.add-dish{display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:15px;border:1px solid var(--line);width:102px;flex-shrink:0;min-height:42px;padding:6px 13px}
+.add-dish>span{font-size:21px;line-height:1}
+.add-dish:hover:not(:disabled){background:var(--green);color:var(--cream)}
+.quantity-control{display:inline-flex;align-items:center;justify-content:space-between;border:1px solid var(--line);flex-shrink:0;width:102px;min-height:42px;font-size:15px}
+.quantity-control button{width:33px;min-height:40px;padding:0;font-size:21px;line-height:1}
+.quantity-control button:hover:not(:disabled){background:#eadfc9}
+.quantity-control>span{min-width:22px;text-align:center;font-variant-numeric:tabular-nums}
+.takeaway-basket{position:sticky;top:140px;max-height:calc(100dvh - 160px);overflow-y:auto;border:1px solid var(--line);background:#f7efdf;scroll-margin-top:130px}
+.basket-photo{width:100%;height:170px;object-fit:cover}
+.basket-body{padding:25px 25px 21px}
+.basket-heading{display:flex;align-items:baseline;justify-content:space-between;gap:15px}
+.basket-heading h2{font-size:35px}
+.basket-heading>span{font-size:13px;color:var(--muted)}
+.basket-collection{display:flex;gap:9px;font-size:14px;line-height:1.7;margin-top:20px;padding-bottom:21px;border-bottom:1px solid var(--line)}
+.basket-collection>svg{margin-top:4px}
+.basket-collection span>span{font-size:13px;color:var(--muted)}
+.basket-empty{padding:31px 0 36px}
+.basket-empty h3{font-family:var(--serif);font-size:27px;line-height:1.25;margin-bottom:10px}
+.basket-empty p{font-size:15px;line-height:1.7;color:var(--muted);max-width:230px}
+.basket-lines{list-style:none;margin:0;padding:0}
+.basket-lines>li{display:flex;gap:15px;justify-content:space-between;padding:21px 0;border-bottom:1px solid var(--line);font-size:15px}
+.basket-lines>li>div{min-width:0}
+.basket-lines>li>span{white-space:nowrap;font-size:16px}
+.basket-lines small,.basket-total small{font-size:12px}
+.basket-lines .small{font-size:13px;color:var(--muted);display:block;margin-top:3px}
+.basket-lines .quantity-control{margin-top:12px;min-height:38px;width:94px}
+.basket-lines .quantity-control button{min-height:36px}
+.basket-total{display:flex;align-items:baseline;justify-content:space-between;gap:20px;font-size:16px;padding:21px 0}
+.basket-total>span:last-child{font-size:20px;white-space:nowrap}
+.basket-review{width:100%;justify-content:space-between;gap:12px}
+.basket-disclosure{color:var(--muted);margin:13px 0 23px;font-size:13px;line-height:1.7}
+.basket-phone{display:flex;align-items:center;gap:8px;font-size:13px;border-top:1px solid var(--line);padding-top:20px}
+.basket-phone:hover{text-decoration:underline;text-underline-offset:4px}
+.mobile-basket-bar{display:none}
+.order-review-dialog{max-width:640px}
+.order-review-dialog h2{font-size:46px;margin-top:16px}
+.review-intro{font-size:16px;line-height:1.8;margin-top:17px}
+.order-summary-lines{list-style:none;margin:26px 0 0;padding:0;border-top:1px solid var(--line)}
+.order-summary-lines li{display:flex;justify-content:space-between;gap:25px;padding:14px 0;border-bottom:1px solid var(--line);font-size:16px}
+.order-summary-lines li>span:last-child{white-space:nowrap}
+.service-form{font-size:16px}
+.service-form label{display:block;line-height:1.5;min-width:0}
+.service-form input,.service-form select,.service-form textarea{display:block;width:100%;min-width:0;background:#fffdf6;border:1px solid #a6ac94;border-radius:0;color:var(--ink);padding:12px;font:inherit;font-size:16px;min-height:50px;margin-top:9px}
+.service-form textarea{resize:vertical;line-height:1.7}
+.service-form input:focus-visible,.service-form select:focus-visible,.service-form textarea:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.service-form select:disabled{background:#f1ecdf;color:var(--muted);opacity:.8}
+.service-form input[aria-invalid=true]{border-color:#9f3c21}
+.field-optional{font-size:14px;color:var(--muted)}
+.order-details-form{display:grid;gap:20px;border-top:1px solid var(--line);padding-top:23px}
+.order-details-form>.small{color:var(--muted)}
+.review-details{margin:27px 0;font-size:16px;border-top:1px solid var(--line)}
+.review-details>div{display:grid;grid-template-columns:130px minmax(0,1fr);gap:25px;padding:15px 0;border-bottom:1px solid var(--line)}
+.review-details dt{color:var(--muted)}
+.review-details dd{margin:0;overflow-wrap:anywhere;white-space:pre-wrap}
+.service-confirm-note{background:#f2e6cd;padding:23px;margin-top:30px;font-size:16px}
+.service-confirm-note .button{margin-top:22px}
+.booking-layout{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:70px;align-items:start}
+.service-section-heading{display:flex;align-items:baseline;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding:0 0 18px;margin-bottom:24px}
+.service-section-heading h2{font-size:36px;scroll-margin-top:145px}
+.service-section-heading .small{color:var(--muted);font-size:13px}
+.booking-form{display:grid;gap:24px}
+.visit-fields{display:grid;grid-template-columns:1.2fr .9fr 1.1fr;gap:18px}
+.contact-fields{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.form-guidance{font-size:14px;line-height:1.8;color:var(--muted)}
+.form-guidance a{text-decoration:underline;text-underline-offset:3px}
+.service-form-error{font-size:15px;color:#86311d}
+.details-heading{margin:17px 0 0}
+.booking-form-bottom{display:flex;align-items:center;gap:25px;margin-top:7px}
+.booking-form-bottom>.button{white-space:nowrap}
+.booking-form-bottom>.small{font-size:13px;line-height:1.7;color:var(--muted)}
+.booking-visit{background:var(--green);color:var(--cream)}
+.booking-visit>img{width:100%;height:220px;object-fit:cover}
+.booking-visit-copy{padding:30px 30px 34px}
+.booking-visit .eyebrow{color:var(--gold);font-size:10px;letter-spacing:1.8px}
+.booking-visit h2{font-size:40px;margin:13px 0 22px}
+.booking-visit p:not(.eyebrow){font-size:15px;line-height:1.8}
+.booking-visit .text-link{font-size:14px;margin-top:15px}
+.booking-hours{border-top:1px solid #51704a;margin-top:29px;padding-top:25px}
+.booking-hours h3{font-family:var(--serif);font-size:27px;margin-bottom:15px;line-height:1.2}
+.booking-hours .hours-list{font-size:13px;line-height:1.8}
+.booking-contact{margin-top:25px}
+.booking-contact a{display:inline-block;font-size:17px;margin-top:6px;color:var(--gold)}
+@media(max-width:1150px){
+  .takeaway-layout,.booking-layout{grid-template-columns:minmax(0,1fr) 310px;gap:32px}
+  .takeaway-menu .menu-tools{flex-wrap:wrap}
+  .takeaway-menu .search-field{flex-basis:100%}
+  .takeaway-menu .category-field{flex:1}
+  .takeaway-menu .category-field select{width:100%}
+  .takeaway-dish{gap:16px}
+  .takeaway-basket{top:125px;max-height:calc(100dvh - 145px)}
+  .basket-body{padding-inline:20px}
+  .visit-fields{grid-template-columns:1fr 1fr}
+  .visit-fields>label:last-child{grid-column:1/-1}
+  .contact-fields{grid-template-columns:1fr;gap:24px}
+  .booking-form-bottom{flex-direction:column;align-items:start;gap:15px}
+  .service-section-heading{flex-wrap:wrap;gap:10px}
+  .booking-visit-copy{padding-inline:24px}
+}
+@media(max-width:900px){
+  .takeaway-layout,.booking-layout{grid-template-columns:1fr;gap:38px}
+  .takeaway-basket{position:static;max-height:none;overflow:visible;scroll-margin-top:130px}
+  .basket-photo{height:210px}
+  .basket-body{padding:26px}
+  .basket-empty p{max-width:none}
+  .takeaway-menu .menu-tools{flex-wrap:nowrap}
+  .takeaway-menu .search-field{flex-basis:auto}
+  .takeaway-menu .category-field{flex:0 1 220px}
+  .takeaway-menu .menu-category:first-child{margin-top:14px}
+  .takeaway-basket:target{outline:2px solid var(--green);outline-offset:3px}
+  .mobile-basket-bar{position:fixed;bottom:0;left:0;right:0;background:var(--green);color:var(--cream);padding:16px 28px calc(16px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:16px;z-index:15;border-top:1px solid #879576}
+  .mobile-basket-bar>span:last-child{display:flex;align-items:center;gap:14px}
+  .mobile-basket-bar>span:first-child>span{color:var(--gold);margin-left:4px}
+  body:has(.mobile-basket-bar) .site-footer{padding-bottom:75px}
+  .visit-fields{grid-template-columns:1.2fr 1fr 1.2fr}
+  .visit-fields>label:last-child{grid-column:auto}
+  .contact-fields{grid-template-columns:1fr 1fr}
+  .booking-form-bottom{flex-direction:row;align-items:center;gap:25px}
+  .booking-visit{display:grid;grid-template-columns:.9fr 1.1fr}
+  .booking-visit>img{height:100%;min-height:420px;object-position:45% center}
+  .booking-hours .hours-list{font-size:14px}
+}
+@media(max-width:680px){
+  .native-service-page{padding-bottom:38px}
+  .native-service-heading .menu-title-row{gap:17px}
+  .native-service-heading .menu-title-row>.text-link{font-size:15px;margin-bottom:0}
+  .service-notice{display:block;padding:16px 18px;margin-bottom:28px;font-size:14px}
+  .service-notice .eyebrow{display:block;margin-bottom:7px}
+  .service-notice a{margin-left:0;margin-top:4px}
+  .takeaway-menu .menu-tools{flex-direction:column;align-items:stretch;gap:11px}
+  .takeaway-menu .category-field{flex:auto}
+  .takeaway-menu .menu-sections{padding-top:10px}
+  .takeaway-dish{gap:12px;flex-wrap:wrap;min-height:112px;padding-block:20px}
+  .takeaway-dish .dish-info{flex-basis:calc(100% - 105px)}
+  .takeaway-dish .dish-info p{margin-top:4px}
+  .takeaway-dish .dish-price{margin-left:auto;align-self:start;font-size:18px}
+  .takeaway-dish>.dish-actions{margin-left:auto;margin-top:-4px;min-height:44px}
+  .takeaway-dish .add-dish{min-height:44px}
+  .takeaway-dish .quantity-control button{min-height:42px}
+  .basket-photo{height:185px}
+  .basket-body{padding:23px 21px}
+  .basket-lines>li{font-size:16px}
+  .basket-phone{font-size:14px;flex-wrap:wrap}
+  .mobile-basket-bar{font-size:15px;padding-inline:20px}
+  .order-review-dialog h2{font-size:39px;line-height:1.1}
+  .order-summary-lines li{font-size:15px;gap:15px}
+  .review-details>div{grid-template-columns:95px minmax(0,1fr);gap:17px;font-size:15px}
+  .service-confirm-note{padding:20px}
+  .service-confirm-note .button{width:100%;padding-inline:12px;font-size:15px;gap:12px}
+  .service-section-heading{display:block}
+  .service-section-heading h2{font-size:32px;scroll-margin-top:110px}
+  .service-section-heading .small{display:block;margin-top:9px}
+  .visit-fields{grid-template-columns:1fr 1fr;gap:20px 15px}
+  .visit-fields>label:last-child{grid-column:1/-1}
+  .contact-fields{grid-template-columns:1fr}
+  .booking-form-bottom{flex-direction:column;align-items:stretch;gap:16px}
+  .booking-form-bottom>.button{width:100%;justify-content:space-between}
+  .booking-form-bottom>.small{font-size:14px}
+  .booking-visit{display:block}
+  .booking-visit>img{height:220px;min-height:0;object-position:center}
+  .booking-visit-copy{padding:27px 25px 30px}
+  .booking-hours .hours-list{font-size:14px}
+}

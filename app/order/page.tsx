@@ -1,3 +1,3 @@
-import ServiceFlow from "../ui/service-flow";
-export const metadata = { title: "Order online", description: "Order Global Herbs for takeaway, with the restaurant’s live menu and checkout." };
-export default function Page() { return <ServiceFlow kind="order" />; }
+import Order from "../ui/order";
+export const metadata = { title: "Order online", description: "Explore the Global Herbs takeaway menu and build your order. Call the restaurant to confirm collection." };
+export default function Page() { return <Order />; }

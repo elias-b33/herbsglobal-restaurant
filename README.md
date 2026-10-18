@@ -14,9 +14,10 @@ Kontroller: `node node_modules/typescript/bin/tsc --noEmit -p tsconfig.app.json`
 - Menysökning, 28 kategorier, 166 mat- och dryckesposter och favoriter som sparas lokalt på besökarens enhet.
 - Elva originalfoton i ett manuellt bläddringsbart galleri. Fullstora foton hämtas först när de öppnas.
 - Öppetstatus utifrån Europe/Bucharest, inklusive helgernas öppethållande efter midnatt.
-- `/order` visar restaurangens riktiga Wix-meny, varukorg och checkout i en inbäddad helskärmsvy. `/book` visar tillgängliga tider och formuläret för gästuppgifter från Wix. Alla knappar på den nya sidan leder hit. På skärmar under 1 000 px visas en lättläst ingång med en knapp som öppnar originalflödet direkt; det undviker Wix fasta desktopbredd i smala iframes.
-- En enkel verktygsrad låter gästen gå tillbaka till den nya sidan eller öppna tjänsten separat. Den senare vägen finns alltid som reserv om webbläsaren blockerar inbäddat innehåll.
-- Restaurangen tar emot beställningar och bokningar i sitt befintliga Wix-system. Ingen dubbel orderdatabas, lokal låtsasvarukorg eller simulerad bokningsbekräftelse har skapats.
+- `/order` är en inbyggd takeaway-meny med sökning, kategorier, antal, varukorg och ordergranskning. Varukorgen är ett lokalt utkast på besökarens enhet, med priser från menyfilen. Varukorgen valideras när den återställs; priser hämtas aldrig från webbläsarlagringen. Mobilvyn har en genväg till varukorgen.
+- `/book` är ett inbyggt bokningsformulär med datum, antal gäster, önskad tid, kontaktuppgifter och granskning. Tiderna följer publicerade öppettider, inklusive tisdagens stängning och helgernas tider efter midnatt. De påstås aldrig vara tillgängliga bord.
+- Båda sidorna använder samma navigation, typsnitt, färger och originalbilder som resten av webbplatsen. De innehåller inga iframes eller automatiska övergångar till den äldre Wix-webbplatsen.
+- **Förhandsvisning, inte aktiv order-/bokningsmottagning:** användaren har valt att förbereda skärmarna tills Wix-åtkomst finns. Varken formulär eller varukorg skickas till restaurangen. Tydlig information visas före formulären och i granskningssteget. Telefonlänkar finns för riktiga ärenden. Kontaktuppgifter finns endast i komponentens minne och sparas inte i localStorage eller på servern.
 
 ## AI-stöd och aktivering
 
@@ -37,11 +38,12 @@ Gränser: upp till 1 000 tecken per meddelande, högst åtta historikmeddelanden
 
 - `app/data/menu.json`: meny, priser, storlekar och kategorier; gemensamt underlag för menyn och AI.
 - `app/data/restaurant.ts`: kontakt, länkar, öppettider och bildlista.
-- `app/ui/`: startsida, meny, navigation, `service-flow.tsx` för Wix-flöden och AI-panel.
+- `app/ui/`: startsida, meny, navigation, `order.tsx`, `booking.tsx`, gemensamma servicekomponenter och AI-panel.
+- `app/lib/service-drafts.ts`: validering av varukorgsutkast, summering och datum/tid enligt Europe/Bucharest.
 - `app/globals.css`: färger, typografi och responsiva regler.
 - `app/lib/assistant-server.ts`: avgränsad AI-anslutning som kan utökas när faktiska boknings-/ordersystem kopplas in.
 
-Ett framtida CMS kan ersätta de två datafilerna utan att byta sidans visuella form. En helt egen design på checkout och bokningsformulär kräver en behörig Wix API-/Headless-anslutning från restaurangägaren. Nuvarande implementation bäddar in de publicerade Wix-sidorna och behåller deras riktiga funktioner och originalutseende. Wix stöder inte felsökning av externa inbäddningar, därför finns alltid en direktlänk som reserv. Vi tar inte bort säkerhetsrubriker eller proxar deras formulär. Inga simulerade bokningsbekräftelser eller betalningar förekommer.
+Ett framtida CMS kan ersätta de två datafilerna utan att byta sidans visuella form. För aktiv beställning och bokning i dessa skärmar behövs restaurangägarens behöriga Wix API-/Headless-anslutning. Nästa steg är att koppla riktiga katalog-ID:n, aktuella priser, lager/utbud, upphämtning och betalningssätt till orderflödet samt bokningsplats, lediga tider och bekräftelsestatus till bokningsflödet. Wix [Reservations API](https://dev.wix.com/docs/api-reference/business-solutions/restaurants/reservations/reservations/introduction) stödjer bland annat bokningsplatser, tillgängliga tider och skapande av reservationer. Använd inte bara en visuell aktiveringsflagga: serveranslutning, validering och svar från restaurangsystemet måste finnas innan något kan bekräftas. Ingen mottagningsdatabas eller betalningstjänst har skapats i detta förberedelsesteg.
 
 ## Källor
 
@@ -54,8 +56,7 @@ AI-protokollet följer [OpenAI Responses-dokumentationen](https://developers.ope
 
 ## Verifiering och drift
 
-- TypeScript och åtta tester för AI-validering, felhantering, begränsning av anrop, menyalternativ och öppettider.
-- Webbläsarkontroll av större text, sökning, mobilvy, AI-status, bokningsflöde och takeaway. Inga riktiga beställningar, betalningar eller slutförda bokningar ska skickas som tester.
+- TypeScript och elva tester för varukorgsvalidering, bokningsdatum, AI-validering, felhantering, begränsning av anrop, menyalternativ och öppettider.
+- Webbläsarkontroll av sökning, varukorg, antal, summering, återställning, redigering, formulärvalidering och bokningsgranskning på dator och mobil. Inga riktiga beställningar, betalningar eller slutförda bokningar ska skickas som tester.
 - Ägaråtgärd: Wix visade bokningsbara tider från 11:00 måndag 19 oktober 2026, medan publicerade öppettider anger 15:00. Kontrollera bokningsschemat i Wix innan sidan delas med gäster.
-- Inbäddade Wix-formulär följer Wix egna priser, tillgänglighet, bekräftelser, personuppgiftshantering och betalningsinställningar. Den nya sidan läser inte kunduppgifterna i iframen och hävdar aldrig själv att en beställning eller bokning har bekräftats.
-- Framtida flytt av restaurangens domän måste bevara de Wix-adresser som dessa flöden använder, eller ersätta integrationen. Byt inte domän utan att först säkra tjänsteadresserna.
+- Före aktivering ska restaurangen verifiera utbud för takeaway, priser, bokningsregler, meddelanden, betalningssätt och personuppgiftshantering. Granskningsstegen är för närvarande uttryckligen oskickade utkast.

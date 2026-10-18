@@ -3,6 +3,32 @@ import assert from "node:assert/strict";
 import { handleAssistant } from "../app/lib/assistant-server";
 import { openingStatus } from "../app/lib/opening";
 import menu from "../app/data/menu.json";
+import { basketDetails, basketTotal, localDate, preferredTimes, readBasket, visitError } from "../app/lib/service-drafts";
+
+test("A restored basket rejects tampered prices, duplicates and invalid quantities", () => {
+  const valid = { id: menu[0].id, quantity: 2, price: 0.01 };
+  const lines = readBasket([valid, valid, { id: "unknown", quantity: 1 }, { id: menu[1].id, quantity: -1 }, { id: menu[2].id, quantity: 21 }, { id: menu[3].id, quantity: 1.5 }, null]);
+  assert.deepEqual(lines, [{ id: menu[0].id, quantity: 2 }]);
+  assert.equal(basketTotal(lines), menu[0].price * 2);
+  assert.equal(basketDetails(lines)[0].price, menu[0].price);
+  assert.deepEqual(readBasket({ items: valid }), []);
+});
+
+test("Booking preferences respect closing days and weekend times after midnight", () => {
+  assert.deepEqual(preferredTimes("2026-10-20"), []);
+  assert.deepEqual(preferredTimes("2026-02-30"), []);
+  assert.equal(preferredTimes("2026-10-19")[0].label, "15:00");
+  assert.equal(preferredTimes("2026-10-24").at(-1)?.label, "00:30 (next day)");
+});
+
+test("Booking dates and past-time validation use Bucharest time", () => {
+  assert.equal(localDate(new Date("2026-10-18T22:30:00Z")), "2026-10-19");
+  const now = new Date("2026-10-19T13:00:00Z");
+  assert.match(visitError("2026-10-18", "900", now), /future date/);
+  assert.match(visitError("2026-10-19", "900", now), /has passed/);
+  assert.equal(visitError("2026-10-19", "1020", now), "");
+  assert.match(visitError("2026-10-20", "900", now), /Tuesdays/);
+});
 
 const origin = "https://restaurant.example";
 const settings = { OPENAI_API_KEY: "test-only-not-a-real-key", OPENAI_MODEL: "test-model" };
