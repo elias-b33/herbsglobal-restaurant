@@ -1,3 +1,6 @@
 import Booking from "../ui/booking";
-export const metadata = { title: "Book a table", description: "Plan your visit to Global Herbs, Bucharest. Choose your preferred details and call us to confirm your table." };
-export default function Page() { return <Booking />; }
+import { LanguageProvider } from "../ui/language";
+import { pageLocale, type LocalePageProps } from "../lib/i18n";
+import { pageMetadata } from "../lib/page-metadata";
+export const generateMetadata = (props: LocalePageProps) => pageMetadata("book", props);
+export default async function Page({ searchParams }: LocalePageProps) { return <LanguageProvider locale={await pageLocale(searchParams)}><Booking /></LanguageProvider>; }

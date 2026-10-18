@@ -1,4 +1,5 @@
 "use client";
+import { useLanguage } from "./language";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { restaurant } from "../data/restaurant";
@@ -25,15 +26,17 @@ export function Icon({ name, size = 20 }: { name: string; size?: number }) {
 export function openDialog(id: string) { (document.getElementById(id) as HTMLDialogElement | null)?.showModal(); }
 
 export function Dialog({ id, label, children, className = "" }: { id: string; label: string; children: ReactNode; className?: string }) {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDialogElement>(null);
   return <dialog ref={ref} id={id} className={`dialog ${className}`} aria-labelledby={`${id}-title`} onClick={event => {
     if (event.target === event.currentTarget) { const rect = event.currentTarget.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) ref.current?.close(); }
   }}>
-    <button className="icon-button dialog-close" aria-label={`Close ${label}`} onClick={() => ref.current?.close()}><Icon name="close" /></button>{children}
+    <button className="icon-button dialog-close" aria-label={t("Close {label}", { label })} onClick={() => ref.current?.close()}><Icon name="close" /></button>{children}
   </dialog>;
 }
 
 function Header({ active }: { active: "home" | "menu" | "order" | "book" }) {
+  const { t, l } = useLanguage();
   const [expanded, setExpanded] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
   useEffect(() => {
@@ -41,35 +44,38 @@ function Header({ active }: { active: "home" | "menu" | "order" | "book" }) {
     window.addEventListener("keydown", key); return () => window.removeEventListener("keydown", key);
   }, [expanded]);
   return <header className="site-header">
-    <a href="#main" className="skip-link">Skip to content</a>
+    <a href="#main" className="skip-link">{t("Skip to content")}</a>
     <div className="header-inner container">
-      <a className="brand" href="/" aria-label="Global Herbs home"><img src="/assets/logo-original.webp" width="112" height="77" alt="Global Herbs" /></a>
-      <button ref={toggle} className="mobile-toggle icon-button" aria-controls="main-nav" aria-expanded={expanded} aria-label={expanded ? "Close navigation" : "Open navigation"} onClick={() => setExpanded(!expanded)}><Icon name={expanded ? "close" : "menu"} size={24} /></button>
-      <nav id="main-nav" aria-label="Main navigation" className={expanded ? "main-nav expanded" : "main-nav"} onClick={() => setExpanded(false)}>
-        <a href="/" aria-current={active === "home" ? "page" : undefined}>Home</a><a href="/#about">About</a><a href="/menu" aria-current={active === "menu" ? "page" : undefined}>Our menu</a><a href="/#contact">Contact</a><a href="/order" aria-current={active === "order" ? "page" : undefined} className="order-link">Order online <Icon name="arrow" size={16} /></a>
+      <a className="brand" href={l("/")} aria-label={t("Global Herbs home")}><img src="/assets/logo-original.webp" width="112" height="77" alt="Global Herbs" /></a>
+      <button ref={toggle} className="mobile-toggle icon-button" aria-controls="main-nav" aria-expanded={expanded} aria-label={expanded ? t("Close navigation") : t("Open navigation")} onClick={() => setExpanded(!expanded)}><Icon name={expanded ? "close" : "menu"} size={24} /></button>
+      <nav id="main-nav" aria-label={t("Main navigation")} className={expanded ? "main-nav expanded" : "main-nav"} onClick={() => setExpanded(false)}>
+        <a href={l("/")} aria-current={active === "home" ? "page" : undefined}>{t("Home")}</a><a href={l("/#about")}>{t("About")}</a><a href={l("/menu")} aria-current={active === "menu" ? "page" : undefined}>{t("Our menu")}</a><a href={l("/#contact")}>{t("Contact")}</a><a href={l("/order")} aria-current={active === "order" ? "page" : undefined} className="order-link">{t("Order online")} <Icon name="arrow" size={16} /></a>
       </nav>
-      <a className="button button-gold header-book" href="/book" aria-current={active === "book" ? "page" : undefined}>Book a table</a>
+      <a className="button button-gold header-book" href={l("/book")} aria-current={active === "book" ? "page" : undefined}>{t("Book a table")}</a>
     </div>
   </header>;
 }
 
 export function OpenStatus() {
+  const { t, locale } = useLanguage();
   const [status, setStatus] = useState<{ open: boolean; text: string } | null>(null);
-  useEffect(() => { setStatus(openingStatus()); const id = setInterval(() => setStatus(openingStatus()), 60_000); return () => clearInterval(id); }, []);
-  return <span className="opening-status"><span className={`status-dot ${status?.open ? "is-open" : ""}`} />{status?.text ?? "See opening hours"}</span>;
+  useEffect(() => { setStatus(openingStatus(new Date(), locale)); const id = setInterval(() => setStatus(openingStatus(new Date(), locale)), 60_000); return () => clearInterval(id); }, [locale]);
+  return <span className="opening-status"><span className={`status-dot ${status?.open ? "is-open" : ""}`} />{status?.text ?? t("See opening hours")}</span>;
 }
 
 export function Hours() {
-  return <dl className="hours-list"><div><dt>Monday</dt><dd>15:00 – 00:00</dd></div><div><dt>Tuesday</dt><dd>Closed</dd></div><div><dt>Wednesday – Friday</dt><dd>15:00 – 00:00</dd></div><div><dt>Saturday – Sunday</dt><dd>13:00 – 01:00</dd></div></dl>;
+  const { t } = useLanguage();
+  return <dl className="hours-list"><div><dt>{t("Monday")}</dt><dd>15:00 – 00:00</dd></div><div><dt>{t("Tuesday")}</dt><dd>{t("Closed")}</dd></div><div><dt>{t("Wednesday – Friday")}</dt><dd>15:00 – 00:00</dd></div><div><dt>{t("Saturday – Sunday")}</dt><dd>13:00 – 01:00</dd></div></dl>;
 }
 
 function Footer() {
+  const { t, l } = useLanguage();
   return <footer className="site-footer" id="contact"><div className="container footer-grid">
-    <section className="footer-hours"><h2>Opening hours</h2><Hours /><p className="small muted">Local time in Bucharest</p></section>
-    <section><h2>Come find us</h2><p>{restaurant.building}<br />Str. Nicolae Tonitza 13<br />București 030167, Romania</p><a className="text-link" href={restaurant.maps} target="_blank" rel="noopener noreferrer">Get directions <Icon name="external" size={15} /></a></section>
-    <section><h2>Let’s talk</h2><a className="phone-link" href={restaurant.phoneHref}>{restaurant.phone}</a><a className="text-link" href="/book">Make a reservation <Icon name="arrow" size={16} /></a><button className="text-link" onClick={() => openDialog("assistant-dialog")}>AI menu assistant <Icon name="chat" size={16} /></button></section>
-    <section><h2>Follow along</h2><a className="social-link" href={restaurant.instagram} target="_blank" rel="noopener noreferrer">Instagram <Icon name="external" size={14} /></a><a className="social-link" href={restaurant.facebook} target="_blank" rel="noopener noreferrer">Facebook <Icon name="external" size={14} /></a><a className="social-link" href={restaurant.tiktok} target="_blank" rel="noopener noreferrer">TikTok <Icon name="external" size={14} /></a><a className="social-link" href={restaurant.experiences} target="_blank" rel="noopener noreferrer">Experiences <Icon name="external" size={14} /></a></section>
-  </div><div className="footer-bottom container"><span>Global Herbs · Restaurant & Bar</span><span>Nepali flavours. Bucharest hospitality.</span><a href="#top">Back to top ↑</a></div></footer>;
+    <section className="footer-hours"><h2>{t("Opening hours")}</h2><Hours /><p className="small muted">{t("Local time in Bucharest")}</p></section>
+    <section><h2>{t("Come find us")}</h2><p>{restaurant.building}<br />Str. Nicolae Tonitza 13<br />București 030167, Romania</p><a className="text-link" href={restaurant.maps} target="_blank" rel="noopener noreferrer">{t("Get directions")} <Icon name="external" size={15} /></a></section>
+    <section><h2>{t("Let’s talk")}</h2><a className="phone-link" href={restaurant.phoneHref}>{restaurant.phone}</a><a className="text-link" href={l("/book")}>{t("Make a reservation")} <Icon name="arrow" size={16} /></a><button className="text-link" onClick={() => openDialog("assistant-dialog")}>{t("AI menu assistant")} <Icon name="chat" size={16} /></button></section>
+    <section><h2>{t("Follow along")}</h2><a className="social-link" href={restaurant.instagram} target="_blank" rel="noopener noreferrer">Instagram <Icon name="external" size={14} /></a><a className="social-link" href={restaurant.facebook} target="_blank" rel="noopener noreferrer">Facebook <Icon name="external" size={14} /></a><a className="social-link" href={restaurant.tiktok} target="_blank" rel="noopener noreferrer">TikTok <Icon name="external" size={14} /></a><a className="social-link" href={restaurant.experiences} target="_blank" rel="noopener noreferrer">{t("Experiences")} <Icon name="external" size={14} /></a></section>
+  </div><div className="footer-bottom container"><span>{t("Global Herbs · Restaurant & Bar")}</span><span>{t("Nepali flavours. Bucharest hospitality.")}</span><a href="#top">{t("Back to top ↑")}</a></div></footer>;
 }
 
 export default function SiteShell({ active, children }: { active: "home" | "menu" | "order" | "book"; children: ReactNode }) {

@@ -1,3 +1,6 @@
 import Menu from "../ui/menu";
-export const metadata = { title: "Food & drinks menu" };
-export default function Page() { return <Menu />; }
+import { LanguageProvider } from "../ui/language";
+import { pageLocale, type LocalePageProps } from "../lib/i18n";
+import { pageMetadata } from "../lib/page-metadata";
+export const generateMetadata = (props: LocalePageProps) => pageMetadata("menu", props);
+export default async function Page({ searchParams }: LocalePageProps) { return <LanguageProvider locale={await pageLocale(searchParams)}><Menu /></LanguageProvider>; }

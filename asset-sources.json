@@ -387,6 +387,24 @@
       ],
       "format": "WEBP",
       "bytes": 97266
+    },
+    {
+      "filename": "noto-sans-devanagari-400.woff2",
+      "sourceUrl": "https://fonts.gstatic.com/s/notosansdevanagari/v30/TuGoUUFzXI5FBtUq5a8bjKYTZjtRU6Sgv3NaV_SNmI0b8QQCQmHn6B2OHjbL_08AlXQl--Y5oWoW.woff2",
+      "role": "languageFont",
+      "contentType": "font/woff2",
+      "bytes": 50416,
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "public/licenses/Noto-Sans-Devanagari-OFL.txt"
+    },
+    {
+      "filename": "noto-serif-devanagari-400.woff2",
+      "sourceUrl": "https://fonts.gstatic.com/s/notoserifdevanagari/v34/x3dYcl3IZKmUqiMk48ZHXJ5jwU-DZGRSaQ4Hh2dGyFzPLcQPVbnRNeFsw0xRWb6uxTA-oz-BO0aFuw.woff2",
+      "role": "languageFont",
+      "contentType": "font/woff2",
+      "bytes": 50952,
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "public/licenses/Noto-Serif-Devanagari-OFL.txt"
     }
   ]
 }

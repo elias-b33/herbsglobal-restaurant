@@ -1,5 +1,6 @@
 import menu from "../data/menu.json";
 import { hours, restaurant } from "../data/restaurant";
+import { formatMoney, intlLocales, translate, type Locale } from "./i18n";
 
 export type BasketLine = { id: string; quantity: number };
 export const basketKey = "global-herbs-basket-v1";
@@ -24,7 +25,7 @@ export function basketTotal(lines: BasketLine[]) {
   return basketDetails(lines).reduce((total, item) => total + Math.round(item.price * 100) * item.quantity, 0) / 100;
 }
 
-export const money = (value: number) => new Intl.NumberFormat("en-GB", { maximumFractionDigits: 2 }).format(value);
+export const money = formatMoney;
 
 export function localDate(date = new Date()) {
   const parts = new Intl.DateTimeFormat("en-CA", { timeZone: restaurant.timezone, year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(date);
@@ -32,7 +33,7 @@ export function localDate(date = new Date()) {
   return `${part("year")}-${part("month")}-${part("day")}`;
 }
 
-export function preferredTimes(date: string) {
+export function preferredTimes(date: string, locale: Locale = "en") {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return [];
   const day = new Date(`${date}T12:00:00Z`);
   if (!Number.isFinite(day.getTime()) || day.toISOString().slice(0, 10) !== date) return [];
@@ -41,7 +42,7 @@ export function preferredTimes(date: string) {
   const times = [];
   for (let minute = schedule.open; minute < schedule.close; minute += 30) {
     const time = `${String(Math.floor(minute / 60) % 24).padStart(2, "0")}:${String(minute % 60).padStart(2, "0")}`;
-    times.push({ value: String(minute), label: `${time}${minute >= 1440 ? " (next day)" : ""}` });
+    times.push({ value: String(minute), label: `${time}${minute >= 1440 ? translate(locale, " (next day)") : ""}` });
   }
   return times;
 }
@@ -60,6 +61,6 @@ export function visitError(date: string, time: string, now = new Date()) {
   return "";
 }
 
-export function displayDate(date: string) {
-  return new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" }).format(new Date(`${date}T12:00:00Z`));
+export function displayDate(date: string, locale: Locale = "en") {
+  return new Intl.DateTimeFormat(intlLocales[locale], { weekday: "long", day: "numeric", month: "long", timeZone: "UTC", calendar: "gregory" }).format(new Date(`${date}T12:00:00Z`));
 }

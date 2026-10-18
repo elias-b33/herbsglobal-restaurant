@@ -19,6 +19,18 @@ Kontroller: `node node_modules/typescript/bin/tsc --noEmit -p tsconfig.app.json`
 - Båda sidorna använder samma navigation, typsnitt, färger och originalbilder som resten av webbplatsen. De innehåller inga iframes eller automatiska övergångar till den äldre Wix-webbplatsen.
 - **Förhandsvisning, inte aktiv order-/bokningsmottagning:** användaren har valt att förbereda skärmarna tills Wix-åtkomst finns. Varken formulär eller varukorg skickas till restaurangen. Tydlig information visas före formulären och i granskningssteget. Telefonlänkar finns för riktiga ärenden. Kontaktuppgifter finns endast i komponentens minne och sparas inte i localStorage eller på servern.
 
+## Språk för granskning
+
+Engelska är fortfarande standardspråk. Rumänska (`ro`) och nepali (`ne`, devanagarisk skrift) finns på startsidan, menyn, takeaway- och bokningssidorna samt i AI-panelen. Det finns ingen synlig språkknapp, automatisk språkdetektering eller sparad språkpreferens.
+
+Förhandsgranska med `?lang=ro` eller `?lang=ne`, till exempel `/menu?lang=ro` och `/book?lang=ne`. Interna länkar behåller språket, sökparametrar och ankarlänkar. Den vanliga adressen utan `lang` visar engelska. Okända eller upprepade språkparametrar faller tillbaka till engelska. Innehållet renderas på servern på valt språk; sidtitlar och tillgänglighetsetiketter följer samma språk. Språkförhandsvisningarna är markerade `noindex` tills restaurangen vill göra dem synliga.
+
+`app/data/translations.ts` och `app/data/menu-translations.ts` innehåller översättningarna. Produktnamn för internationella drycker behålls. Meny-ID:n, priser, mängder och sparade favoriter/varukorgar delas mellan språken. Sökningen accepterar både originalnamn och översatta namn, även rumänska utan diakritiska tecken, och behåller nepaliska vokaltecken. Datum använder gregoriansk kalender och tider fortsätter följa Europe/Bucharest. Priserna är alltid i RON.
+
+Noto Sans/Serif Devanagari laddas från egna fontfiler bara där skriften behöver dem; originalets Avenir/Cormorant används fortsatt för latinsk text. SIL OFL-licenserna finns i `public/licenses/` och källorna i `asset-sources.json`. AI-panelen skickar en validerad språkpreferens när assistenten är aktiverad; språkstödet aktiverar inte AI eller boknings-/ordermottagningen.
+
+Översättningarna kan granskas via direktlänkarna innan en språkknapp läggs till. Den tidigare levererade lokala ZIP-versionen är oförändrad.
+
 ## AI-stöd och aktivering
 
 `app/api/assistant/route.ts` tar emot GET för status och POST för frågor. `app/lib/assistant-server.ts` ansluter till OpenAI Responses API på serversidan. Nyckeln skickas aldrig till webbläsaren. Restauranginformationen och den lokala menyn skickas som faktaunderlag. Assistenten får inte hitta på allergeninformation eller påstå att den har bokat bord.
@@ -56,7 +68,7 @@ AI-protokollet följer [OpenAI Responses-dokumentationen](https://developers.ope
 
 ## Verifiering och drift
 
-- TypeScript och elva tester för varukorgsvalidering, bokningsdatum, AI-validering, felhantering, begränsning av anrop, menyalternativ och öppettider.
+- TypeScript och sexton tester för varukorgsvalidering, bokningsdatum, AI-validering, felhantering, begränsning av anrop, menyalternativ och öppettider.
 - Webbläsarkontroll av sökning, varukorg, antal, summering, återställning, redigering, formulärvalidering och bokningsgranskning på dator och mobil. Inga riktiga beställningar, betalningar eller slutförda bokningar ska skickas som tester.
 - Ägaråtgärd: Wix visade bokningsbara tider från 11:00 måndag 19 oktober 2026, medan publicerade öppettider anger 15:00. Kontrollera bokningsschemat i Wix innan sidan delas med gäster.
 - Före aktivering ska restaurangen verifiera utbud för takeaway, priser, bokningsregler, meddelanden, betalningssätt och personuppgiftshantering. Granskningsstegen är för närvarande uttryckligen oskickade utkast.

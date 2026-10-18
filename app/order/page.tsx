@@ -1,3 +1,6 @@
 import Order from "../ui/order";
-export const metadata = { title: "Order online", description: "Explore the Global Herbs takeaway menu and build your order. Call the restaurant to confirm collection." };
-export default function Page() { return <Order />; }
+import { LanguageProvider } from "../ui/language";
+import { pageLocale, type LocalePageProps } from "../lib/i18n";
+import { pageMetadata } from "../lib/page-metadata";
+export const generateMetadata = (props: LocalePageProps) => pageMetadata("order", props);
+export default async function Page({ searchParams }: LocalePageProps) { return <LanguageProvider locale={await pageLocale(searchParams)}><Order /></LanguageProvider>; }
