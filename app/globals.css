@@ -39,3 +39,14 @@
 @media(max-width:1150px){.footer-grid{grid-template-columns:1fr 1fr;gap:36px 65px}.footer-hours{max-width:340px}.header-inner{gap:20px}.main-nav{gap:20px}.dish-grid{column-gap:32px}}
 @media(max-width:900px){.header-inner{gap:16px}.main-nav{gap:16px;font-size:14px}.kitchen-links{gap:15px}.dish h3{font-size:17px}.dish{gap:8px}.hero-actions{gap:16px}}
 @media(max-width:680px){.main-nav{font-size:17px}.header-book{font-size:14px}.header-inner{gap:8px}.hero-actions{gap:18px}.hero-actions .button{font-size:14px}.hero-actions .text-link{font-size:14px}.footer-grid{gap:30px;grid-template-columns:1fr}.footer-hours{max-width:none}.footer-grid>section:last-child{column-gap:22px}.menu-title-row h1{font-size:52px}.dish{gap:10px;padding-block:20px;min-height:96px}.dish h3{font-size:17px}.dish-price{font-size:18px}.favourites-toggle{font-size:14px}.category-field{flex-basis:100%}.favourites-toggle{min-height:44px;padding-inline:14px}.menu-meta{gap:12px}.kitchen-links{margin-top:20px;align-items:start;gap:16px;flex-direction:column}.service-toolbar{padding:12px 15px;gap:10px;flex-wrap:wrap;font-size:13px}.service-toolbar h1{font-size:26px;order:-1;width:100%}.service-footnote{padding:10px 15px;font-size:12px}.service-footnote>p:first-child{display:none}.service-toolbar .service-return{margin-right:auto}.assistant-dialog{max-width:500px}.assistant-header h2{font-size:40px}}
+
+.service-direct{height:auto;min-height:100dvh;overflow:visible}
+.service-handoff{width:calc(100% - 40px);max-width:500px;margin:42px auto 50px;text-align:center}
+.service-handoff>img{margin:0 auto 32px}
+.service-handoff .eyebrow{font-size:11px}
+.service-handoff h2{font-size:48px;margin:18px 0 24px}
+.service-handoff>p:not(.eyebrow){font-size:17px;line-height:1.8}
+.service-handoff>.button{width:100%;margin:28px 0 17px;min-height:54px}
+.service-handoff>p.small{font-size:14px;color:var(--muted)}
+.handoff-contact{border-top:1px solid var(--line);padding-top:25px;margin-top:28px;font-size:15px}
+.handoff-contact .text-link{margin-top:7px}

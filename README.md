@@ -14,7 +14,7 @@ Kontroller: `node node_modules/typescript/bin/tsc --noEmit -p tsconfig.app.json`
 - Menysökning, 28 kategorier, 166 mat- och dryckesposter och favoriter som sparas lokalt på besökarens enhet.
 - Elva originalfoton i ett manuellt bläddringsbart galleri. Fullstora foton hämtas först när de öppnas.
 - Öppetstatus utifrån Europe/Bucharest, inklusive helgernas öppethållande efter midnatt.
-- `/order` visar restaurangens riktiga Wix-meny, varukorg och checkout i en inbäddad helskärmsvy. `/book` visar tillgängliga tider och formuläret för gästuppgifter från Wix. Alla knappar på den nya sidan leder hit.
+- `/order` visar restaurangens riktiga Wix-meny, varukorg och checkout i en inbäddad helskärmsvy. `/book` visar tillgängliga tider och formuläret för gästuppgifter från Wix. Alla knappar på den nya sidan leder hit. På skärmar under 1 000 px visas en lättläst ingång med en knapp som öppnar originalflödet direkt; det undviker Wix fasta desktopbredd i smala iframes.
 - En enkel verktygsrad låter gästen gå tillbaka till den nya sidan eller öppna tjänsten separat. Den senare vägen finns alltid som reserv om webbläsaren blockerar inbäddat innehåll.
 - Restaurangen tar emot beställningar och bokningar i sitt befintliga Wix-system. Ingen dubbel orderdatabas, lokal låtsasvarukorg eller simulerad bokningsbekräftelse har skapats.
 
