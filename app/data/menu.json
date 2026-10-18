@@ -1,0 +1,1164 @@
+[
+  {
+    "id": "green-salad-1",
+    "name": "Green Salad",
+    "category": "Salads",
+    "portion": "150g",
+    "price": 19.0
+  },
+  {
+    "id": "herbs-special-salad-2",
+    "name": "Herbs Special Salad",
+    "category": "Salads",
+    "portion": "200g",
+    "price": 29.0
+  },
+  {
+    "id": "nepali-salad-3",
+    "name": "Nepali Salad",
+    "category": "Salads",
+    "portion": "180g",
+    "price": 26.0
+  },
+  {
+    "id": "daal-soup-4",
+    "name": "Daal Soup",
+    "category": "Soups",
+    "portion": "200g",
+    "price": 19.0
+  },
+  {
+    "id": "chicken-soup-5",
+    "name": "Chicken Soup",
+    "category": "Soups",
+    "portion": "200g",
+    "price": 23.0
+  },
+  {
+    "id": "mix-veg-soup-6",
+    "name": "Mix Veg Soup",
+    "category": "Soups",
+    "portion": "200g",
+    "price": 23.0
+  },
+  {
+    "id": "aalu-tama-soup-7",
+    "name": "Aalu Tama Soup",
+    "category": "Soups",
+    "portion": "200g",
+    "price": 23.0
+  },
+  {
+    "id": "mix-seafood-soup-8",
+    "name": "Mix Seafood Soup",
+    "category": "Soups",
+    "portion": "200g",
+    "price": 29.0
+  },
+  {
+    "id": "papadom-9",
+    "name": "Papadom",
+    "category": "Starters",
+    "portion": "30g",
+    "price": 9.0
+  },
+  {
+    "id": "chatpate-10",
+    "name": "Chatpate",
+    "category": "Starters",
+    "portion": "200g",
+    "price": 29.0
+  },
+  {
+    "id": "pani-puri-11",
+    "name": "Pani Puri",
+    "category": "Starters",
+    "portion": "150g",
+    "price": 29.0
+  },
+  {
+    "id": "samosa-12",
+    "name": "Samosa",
+    "category": "Starters",
+    "portion": "200g",
+    "price": 26.0
+  },
+  {
+    "id": "aalu-sadheko-13",
+    "name": "Aalu Sadheko",
+    "category": "Snacks",
+    "portion": "200g",
+    "price": 29.0
+  },
+  {
+    "id": "peanut-sadheko-14",
+    "name": "Peanut Sadheko",
+    "category": "Snacks",
+    "portion": "150g",
+    "price": 29.0
+  },
+  {
+    "id": "chicken-sadheko-15",
+    "name": "Chicken Sadheko",
+    "category": "Snacks",
+    "portion": "200g",
+    "price": 43.0
+  },
+  {
+    "id": "pork-sadheko-16",
+    "name": "Pork Sadheko",
+    "category": "Snacks",
+    "portion": "200g",
+    "price": 46.0
+  },
+  {
+    "id": "chicken-chilly-17",
+    "name": "Chicken Chilly",
+    "category": "Snacks",
+    "portion": "250g",
+    "price": 43.0
+  },
+  {
+    "id": "pork-chilly-18",
+    "name": "Pork Chilly",
+    "category": "Snacks",
+    "portion": "250g",
+    "price": 46.0
+  },
+  {
+    "id": "chicken-sekwa-19",
+    "name": "Chicken Sekwa",
+    "category": "Snacks",
+    "portion": "250g",
+    "price": 49.0
+  },
+  {
+    "id": "pork-sekwa-20",
+    "name": "Pork Sekwa",
+    "category": "Snacks",
+    "portion": "250g",
+    "price": 53.0
+  },
+  {
+    "id": "chicken-chhoila-21",
+    "name": "Chicken Chhoila",
+    "category": "Snacks",
+    "portion": "300g",
+    "price": 46.0
+  },
+  {
+    "id": "pork-chhoila-22",
+    "name": "Pork Chhoila",
+    "category": "Snacks",
+    "portion": "300g",
+    "price": 49.0
+  },
+  {
+    "id": "nepali-fried-chicken-23",
+    "name": "Nepali Fried Chicken",
+    "category": "Snacks",
+    "portion": "200g",
+    "price": 39.0
+  },
+  {
+    "id": "spring-roll-24",
+    "name": "Spring Roll",
+    "category": "Snacks",
+    "portion": "180g",
+    "price": 35.0
+  },
+  {
+    "id": "veggie-steam-mo-mo-25",
+    "name": "Veggie Steam Mo:mo",
+    "category": "Mo:mo",
+    "portion": "350g",
+    "price": 33.0
+  },
+  {
+    "id": "veggie-jhol-mo-mo-26",
+    "name": "Veggie Jhol Mo:mo",
+    "category": "Mo:mo",
+    "portion": "450g",
+    "price": 39.0
+  },
+  {
+    "id": "veggie-chilly-mo-mo-27",
+    "name": "Veggie Chilly Mo:mo",
+    "category": "Mo:mo",
+    "portion": "400g",
+    "price": 39.0
+  },
+  {
+    "id": "chicken-steam-mo-mo-28",
+    "name": "Chicken Steam Mo:mo",
+    "category": "Mo:mo",
+    "portion": "350g",
+    "price": 39.0
+  },
+  {
+    "id": "chicken-jhol-mo-mo-29",
+    "name": "Chicken Jhol Mo:mo",
+    "category": "Mo:mo",
+    "portion": "450g",
+    "price": 43.0
+  },
+  {
+    "id": "chicken-chilly-mo-mo-30",
+    "name": "Chicken Chilly Mo:mo",
+    "category": "Mo:mo",
+    "portion": "",
+    "price": 43.0
+  },
+  {
+    "id": "pork-steam-mo-mo-31",
+    "name": "Pork Steam Mo:mo",
+    "category": "Mo:mo",
+    "portion": "",
+    "price": 39.0
+  },
+  {
+    "id": "pork-jhol-mo-mo-32",
+    "name": "Pork Jhol Mo:mo",
+    "category": "Mo:mo",
+    "portion": "",
+    "price": 46.0
+  },
+  {
+    "id": "pork-chilly-mo-mo-33",
+    "name": "Pork Chilly Mo:mo",
+    "category": "Mo:mo",
+    "portion": "",
+    "price": 46.0
+  },
+  {
+    "id": "veggie-chowmein-34",
+    "name": "Veggie Chowmein",
+    "category": "Chowmein",
+    "portion": "250g",
+    "price": 33.0
+  },
+  {
+    "id": "chicken-chowmein-35",
+    "name": "Chicken Chowmein",
+    "category": "Chowmein",
+    "portion": "300g",
+    "price": 39.0
+  },
+  {
+    "id": "pork-chowmein-36",
+    "name": "Pork Chowmein",
+    "category": "Chowmein",
+    "portion": "300g",
+    "price": 39.0
+  },
+  {
+    "id": "mix-chowmein-37",
+    "name": "Mix - Chowmein",
+    "category": "Chowmein",
+    "portion": "350g",
+    "price": 46.0
+  },
+  {
+    "id": "veggie-fried-rice-38",
+    "name": "Veggie Fried Rice",
+    "category": "Fried Rice",
+    "portion": "250g",
+    "price": 36.0
+  },
+  {
+    "id": "chicken-fried-rice-39",
+    "name": "Chicken Fried Rice",
+    "category": "Fried Rice",
+    "portion": "300g",
+    "price": 40.0
+  },
+  {
+    "id": "pork-fried-rice-40",
+    "name": "Pork Fried Rice",
+    "category": "Fried Rice",
+    "portion": "300g",
+    "price": 43.0
+  },
+  {
+    "id": "mix-fried-rice-41",
+    "name": "Mix Fried Rice",
+    "category": "Fried Rice",
+    "portion": "350g",
+    "price": 46.0
+  },
+  {
+    "id": "veggie-thukpa-42",
+    "name": "Veggie Thukpa",
+    "category": "Thukpa",
+    "portion": "350g",
+    "price": 35.0
+  },
+  {
+    "id": "chicken-thukpa-43",
+    "name": "Chicken Thukpa",
+    "category": "Thukpa",
+    "portion": "380g",
+    "price": 42.0
+  },
+  {
+    "id": "pork-thukpa-44",
+    "name": "Pork Thukpa",
+    "category": "Thukpa",
+    "portion": "380g",
+    "price": 45.0
+  },
+  {
+    "id": "mix-thukpa-45",
+    "name": "Mix Thukpa",
+    "category": "Thukpa",
+    "portion": "400g",
+    "price": 47.0
+  },
+  {
+    "id": "veggie-thali-set-46",
+    "name": "Veggie Thali Set",
+    "category": "Thali sets",
+    "portion": "400g",
+    "price": 59.0
+  },
+  {
+    "id": "chicken-thali-set-47",
+    "name": "Chicken Thali Set",
+    "category": "Thali sets",
+    "portion": "400g",
+    "price": 63.0
+  },
+  {
+    "id": "pork-thali-set-48",
+    "name": "Pork Thali Set",
+    "category": "Thali sets",
+    "portion": "400g",
+    "price": 66.0
+  },
+  {
+    "id": "mutton-thali-set-49",
+    "name": "Mutton Thali Set",
+    "category": "Thali sets",
+    "portion": "400g",
+    "price": 73.0
+  },
+  {
+    "id": "veggie-biryani-50",
+    "name": "Veggie Biryani",
+    "category": "Biryani",
+    "portion": "400g",
+    "price": 49.0
+  },
+  {
+    "id": "chicken-biryani-51",
+    "name": "Chicken Biryani",
+    "category": "Biryani",
+    "portion": "400g",
+    "price": 59.0
+  },
+  {
+    "id": "pork-biryani-52",
+    "name": "Pork Biryani",
+    "category": "Biryani",
+    "portion": "400g",
+    "price": 63.0
+  },
+  {
+    "id": "mutton-biryani-53",
+    "name": "Mutton Biryani",
+    "category": "Biryani",
+    "portion": "400g",
+    "price": 69.0
+  },
+  {
+    "id": "penne-arabiata-54",
+    "name": "Penne Arabiata",
+    "category": "Pasta",
+    "portion": "350g",
+    "price": 49.0
+  },
+  {
+    "id": "penne-ala-chef-55",
+    "name": "Penne Ala-Chef",
+    "category": "Pasta",
+    "portion": "350g",
+    "price": 49.0
+  },
+  {
+    "id": "spaghetti-carbonara-56",
+    "name": "Spaghetti Carbonara",
+    "category": "Pasta",
+    "portion": "350g",
+    "price": 49.0
+  },
+  {
+    "id": "spaghetti-fructe-de-mare-57",
+    "name": "Spaghetti Fructe De Mare",
+    "category": "Pasta",
+    "portion": "350g",
+    "price": 63.0
+  },
+  {
+    "id": "daal-makhani-58",
+    "name": "Daal Makhani",
+    "category": "Vegetable curries",
+    "portion": "250g",
+    "price": 29.0
+  },
+  {
+    "id": "aalu-gobi-59",
+    "name": "Aalu Gobi",
+    "category": "Vegetable curries",
+    "portion": "250g",
+    "price": 29.0
+  },
+  {
+    "id": "paneer-makhani-60",
+    "name": "Paneer Makhani",
+    "category": "Vegetable curries",
+    "portion": "250g",
+    "price": 36.0
+  },
+  {
+    "id": "palak-paneer-61",
+    "name": "Palak Paneer",
+    "category": "Vegetable curries",
+    "portion": "250g",
+    "price": 36.0
+  },
+  {
+    "id": "butter-chicken-62",
+    "name": "Butter Chicken",
+    "category": "Meat curries",
+    "portion": "250g",
+    "price": 46.0
+  },
+  {
+    "id": "chicken-vindaloo-63",
+    "name": "Chicken Vindaloo",
+    "category": "Meat curries",
+    "portion": "250g",
+    "price": 49.0
+  },
+  {
+    "id": "chicken-curry-64",
+    "name": "Chicken Curry",
+    "category": "Meat curries",
+    "portion": "250g",
+    "price": 46.0
+  },
+  {
+    "id": "pork-curry-65",
+    "name": "Pork Curry",
+    "category": "Meat curries",
+    "portion": "250g",
+    "price": 49.0
+  },
+  {
+    "id": "pork-vindaloo-66",
+    "name": "Pork Vindaloo",
+    "category": "Meat curries",
+    "portion": "250g",
+    "price": 56.0
+  },
+  {
+    "id": "mutton-curry-67",
+    "name": "Mutton Curry",
+    "category": "Meat curries",
+    "portion": "250g",
+    "price": 56.0
+  },
+  {
+    "id": "mutton-vindaloo-68",
+    "name": "Mutton Vindaloo",
+    "category": "Meat curries",
+    "portion": "250g",
+    "price": 59.0
+  },
+  {
+    "id": "mutton-saag-69",
+    "name": "Mutton Saag",
+    "category": "Meat curries",
+    "portion": "250g",
+    "price": 59.0
+  },
+  {
+    "id": "sahi-mutton-70",
+    "name": "Sahi Mutton",
+    "category": "Meat curries",
+    "portion": "250g",
+    "price": 59.0
+  },
+  {
+    "id": "prawn-makhani-71",
+    "name": "Prawn Makhani",
+    "category": "Prawn curries",
+    "portion": "250g",
+    "price": 69.0
+  },
+  {
+    "id": "prawn-curry-72",
+    "name": "Prawn Curry",
+    "category": "Prawn curries",
+    "portion": "250g",
+    "price": 69.0
+  },
+  {
+    "id": "palak-prawn-73",
+    "name": "Palak Prawn",
+    "category": "Prawn curries",
+    "portion": "250g",
+    "price": 69.0
+  },
+  {
+    "id": "grilled-chicken-74",
+    "name": "Grilled Chicken",
+    "category": "Grilled Meat",
+    "portion": "400g",
+    "price": 51.0
+  },
+  {
+    "id": "grilled-pork-75",
+    "name": "Grilled Pork",
+    "category": "Grilled Meat",
+    "portion": "400g",
+    "price": 56.0
+  },
+  {
+    "id": "grilled-salmon-76",
+    "name": "Grilled Salmon",
+    "category": "Grilled Meat",
+    "portion": "400g",
+    "price": 69.0
+  },
+  {
+    "id": "plain-naan-77",
+    "name": "Plain Naan",
+    "category": "Naan",
+    "portion": "150g",
+    "price": 11.0
+  },
+  {
+    "id": "cheese-naan-78",
+    "name": "Cheese Naan",
+    "category": "Naan",
+    "portion": "200g",
+    "price": 23.0
+  },
+  {
+    "id": "garlic-naan-79",
+    "name": "Garlic Naan",
+    "category": "Naan",
+    "portion": "150g",
+    "price": 16.0
+  },
+  {
+    "id": "butter-naan-80",
+    "name": "Butter Naan",
+    "category": "Naan",
+    "portion": "150g",
+    "price": 15.0
+  },
+  {
+    "id": "chicken-combo-set-81",
+    "name": "Chicken Combo Set",
+    "category": "Combo sets",
+    "portion": "small",
+    "price": 99.0
+  },
+  {
+    "id": "chicken-combo-set-82",
+    "name": "Chicken Combo Set",
+    "category": "Combo sets",
+    "portion": "large",
+    "price": 195.0
+  },
+  {
+    "id": "pork-combo-set-83",
+    "name": "Pork Combo Set",
+    "category": "Combo sets",
+    "portion": "small",
+    "price": 99.0
+  },
+  {
+    "id": "pork-combo-set-84",
+    "name": "Pork Combo Set",
+    "category": "Combo sets",
+    "portion": "large",
+    "price": 195.0
+  },
+  {
+    "id": "parmesan-cheese-85",
+    "name": "Parmesan Cheese",
+    "category": "Sides & sauces",
+    "portion": "50g",
+    "price": 9.0
+  },
+  {
+    "id": "tomato-ketchup-86",
+    "name": "Tomato Ketchup",
+    "category": "Sides & sauces",
+    "portion": "50g",
+    "price": 5.0
+  },
+  {
+    "id": "mayonaise-87",
+    "name": "Mayonaise",
+    "category": "Sides & sauces",
+    "portion": "50g",
+    "price": 5.0
+  },
+  {
+    "id": "nepali-hot-sauce-88",
+    "name": "Nepali Hot Sauce",
+    "category": "Sides & sauces",
+    "portion": "50g",
+    "price": 9.0
+  },
+  {
+    "id": "raita-89",
+    "name": "Raita",
+    "category": "Sides & sauces",
+    "portion": "100g",
+    "price": 13.0
+  },
+  {
+    "id": "french-fries-90",
+    "name": "French Fries",
+    "category": "Sides & sauces",
+    "portion": "",
+    "price": 19.0
+  },
+  {
+    "id": "plain-rice-91",
+    "name": "Plain Rice",
+    "category": "Sides & sauces",
+    "portion": "",
+    "price": 15.0
+  },
+  {
+    "id": "rasgulla-92",
+    "name": "Rasgulla",
+    "category": "Dessert",
+    "portion": "",
+    "price": 24.0
+  },
+  {
+    "id": "gulab-jamun-93",
+    "name": "Gulab Jamun",
+    "category": "Dessert",
+    "portion": "",
+    "price": 24.0
+  },
+  {
+    "id": "nepali-ice-cream-94",
+    "name": "Nepali Ice-Cream",
+    "category": "Dessert",
+    "portion": "100g",
+    "price": 24.0
+  },
+  {
+    "id": "coca-cola-95",
+    "name": "Coca Cola",
+    "category": "Soft Drinks",
+    "portion": "250ml",
+    "price": 13.0
+  },
+  {
+    "id": "fanta-96",
+    "name": "Fanta",
+    "category": "Soft Drinks",
+    "portion": "250ml",
+    "price": 13.0
+  },
+  {
+    "id": "sprite-97",
+    "name": "Sprite",
+    "category": "Soft Drinks",
+    "portion": "250ml",
+    "price": 13.0
+  },
+  {
+    "id": "pepsi-98",
+    "name": "Pepsi",
+    "category": "Soft Drinks",
+    "portion": "250ml",
+    "price": 13.0
+  },
+  {
+    "id": "red-bull-99",
+    "name": "Red Bull",
+    "category": "Soft Drinks",
+    "portion": "250 ml",
+    "price": 16.0
+  },
+  {
+    "id": "mineral-water-100",
+    "name": "Mineral Water",
+    "category": "Soft Drinks",
+    "portion": "750ml",
+    "price": 15.0
+  },
+  {
+    "id": "mineral-water-101",
+    "name": "Mineral Water",
+    "category": "Soft Drinks",
+    "portion": "330ml",
+    "price": 10.0
+  },
+  {
+    "id": "water-102",
+    "name": "Water",
+    "category": "Soft Drinks",
+    "portion": "750ml",
+    "price": 15.0
+  },
+  {
+    "id": "water-103",
+    "name": "Water",
+    "category": "Soft Drinks",
+    "portion": "330ml",
+    "price": 10.0
+  },
+  {
+    "id": "cranberry-juice-104",
+    "name": "Cranberry Juice",
+    "category": "Soft Drinks",
+    "portion": "200ml",
+    "price": 13.0
+  },
+  {
+    "id": "apple-juice-105",
+    "name": "Apple Juice",
+    "category": "Soft Drinks",
+    "portion": "200ml",
+    "price": 13.0
+  },
+  {
+    "id": "plain-lassi-106",
+    "name": "Plain Lassi",
+    "category": "Soft Drinks",
+    "portion": "300ml",
+    "price": 13.0
+  },
+  {
+    "id": "banana-lassi-107",
+    "name": "Banana Lassi",
+    "category": "Soft Drinks",
+    "portion": "300ml",
+    "price": 19.0
+  },
+  {
+    "id": "mango-lassi-108",
+    "name": "Mango Lassi",
+    "category": "Soft Drinks",
+    "portion": "300ml",
+    "price": 19.0
+  },
+  {
+    "id": "cold-lemonade-109",
+    "name": "Cold Lemonade",
+    "category": "Soft Drinks",
+    "portion": "300ml",
+    "price": 19.0
+  },
+  {
+    "id": "fresh-orange-juice-110",
+    "name": "Fresh Orange Juice",
+    "category": "Soft Drinks",
+    "portion": "300ml",
+    "price": 19.0
+  },
+  {
+    "id": "espresso-111",
+    "name": "Espresso",
+    "category": "Coffee",
+    "portion": "30ml",
+    "price": 10.0
+  },
+  {
+    "id": "espresso-double-shot-112",
+    "name": "Espresso Double Shot",
+    "category": "Coffee",
+    "portion": "60ml",
+    "price": 16.0
+  },
+  {
+    "id": "americano-113",
+    "name": "Americano",
+    "category": "Coffee",
+    "portion": "180ml",
+    "price": 13.0
+  },
+  {
+    "id": "cappuccino-114",
+    "name": "Cappuccino",
+    "category": "Coffee",
+    "portion": "180ml",
+    "price": 16.0
+  },
+  {
+    "id": "cafe-latte-115",
+    "name": "Cafe Latte",
+    "category": "Coffee",
+    "portion": "240ml",
+    "price": 19.0
+  },
+  {
+    "id": "honey-latte-116",
+    "name": "Honey Latte",
+    "category": "Coffee",
+    "portion": "240ml",
+    "price": 19.0
+  },
+  {
+    "id": "iced-americano-117",
+    "name": "Iced Americano",
+    "category": "Cold Coffee",
+    "portion": "350ml",
+    "price": 13.0
+  },
+  {
+    "id": "iced-cappuccino-118",
+    "name": "Iced Cappuccino",
+    "category": "Cold Coffee",
+    "portion": "350ml",
+    "price": 16.0
+  },
+  {
+    "id": "caramel-iced-latte-119",
+    "name": "Caramel Iced Latte",
+    "category": "Cold Coffee",
+    "portion": "250ml",
+    "price": 20.0
+  },
+  {
+    "id": "vanilla-iced-latte-120",
+    "name": "Vanilla Iced Latte",
+    "category": "Cold Coffee",
+    "portion": "350ml",
+    "price": 20.0
+  },
+  {
+    "id": "masala-tea-121",
+    "name": "Masala Tea",
+    "category": "Hot Tea",
+    "portion": "150ml",
+    "price": 19.0
+  },
+  {
+    "id": "green-tea-122",
+    "name": "Green Tea",
+    "category": "Hot Tea",
+    "portion": "150ml",
+    "price": 9.0
+  },
+  {
+    "id": "black-tea-123",
+    "name": "Black Tea",
+    "category": "Hot Tea",
+    "portion": "150ml",
+    "price": 9.0
+  },
+  {
+    "id": "lemon-tea-124",
+    "name": "Lemon Tea",
+    "category": "Hot Tea",
+    "portion": "150ml",
+    "price": 9.0
+  },
+  {
+    "id": "ginger-hot-lemon-125",
+    "name": "Ginger Hot Lemon",
+    "category": "Hot Tea",
+    "portion": "",
+    "price": 13.0
+  },
+  {
+    "id": "hot-lemon-honey-126",
+    "name": "Hot Lemon Honey",
+    "category": "Hot Tea",
+    "portion": "200ml",
+    "price": 19.0
+  },
+  {
+    "id": "tequila-sunrise-127",
+    "name": "Tequila Sunrise",
+    "category": "Cocktails",
+    "portion": "300ml",
+    "price": 29.0
+  },
+  {
+    "id": "campari-orange-128",
+    "name": "Campari Orange",
+    "category": "Cocktails",
+    "portion": "300ml",
+    "price": 29.0
+  },
+  {
+    "id": "mojito-129",
+    "name": "Mojito",
+    "category": "Cocktails",
+    "portion": "300ml",
+    "price": 29.0
+  },
+  {
+    "id": "gin-tonic-130",
+    "name": "Gin Tonic",
+    "category": "Cocktails",
+    "portion": "300ml",
+    "price": 29.0
+  },
+  {
+    "id": "cuba-libre-131",
+    "name": "Cuba Libre",
+    "category": "Cocktails",
+    "portion": "300ml",
+    "price": 29.0
+  },
+  {
+    "id": "vodka-santal-132",
+    "name": "Vodka Santal",
+    "category": "Cocktails",
+    "portion": "300ml",
+    "price": 29.0
+  },
+  {
+    "id": "aperol-spritz-133",
+    "name": "Aperol Spritz",
+    "category": "Cocktails",
+    "portion": "250ml",
+    "price": 33.0
+  },
+  {
+    "id": "hugo-spritz-134",
+    "name": "Hugo Spritz",
+    "category": "Cocktails",
+    "portion": "250ml",
+    "price": 33.0
+  },
+  {
+    "id": "campari-spritz-135",
+    "name": "Campari Spritz",
+    "category": "Cocktails",
+    "portion": "250ml",
+    "price": 33.0
+  },
+  {
+    "id": "tuborg-beer-136",
+    "name": "Tuborg Beer",
+    "category": "Beers",
+    "portion": "500ml",
+    "price": 16.0
+  },
+  {
+    "id": "tuborg-beer-137",
+    "name": "Tuborg Beer",
+    "category": "Beers",
+    "portion": "330ml",
+    "price": 13.0
+  },
+  {
+    "id": "ursus-138",
+    "name": "Ursus",
+    "category": "Beers",
+    "portion": "500ml",
+    "price": 16.0
+  },
+  {
+    "id": "carlsberg-139",
+    "name": "Carlsberg",
+    "category": "Beers",
+    "portion": "330ml",
+    "price": 13.0
+  },
+  {
+    "id": "krombacher-blonda-140",
+    "name": "Krombacher Blonda",
+    "category": "Beers",
+    "portion": "400ml",
+    "price": 13.0
+  },
+  {
+    "id": "primator-dark-141",
+    "name": "Primator Dark",
+    "category": "Beers",
+    "portion": "400ml",
+    "price": 11.0
+  },
+  {
+    "id": "tuborg-beer-n-a-142",
+    "name": "Tuborg Beer N/A",
+    "category": "Beers",
+    "portion": "330ml",
+    "price": 14.0
+  },
+  {
+    "id": "campari-143",
+    "name": "Campari",
+    "category": "Spirits",
+    "portion": "40ml",
+    "price": 16.0
+  },
+  {
+    "id": "aperol-144",
+    "name": "Aperol",
+    "category": "Spirits",
+    "portion": "40ml",
+    "price": 15.0
+  },
+  {
+    "id": "jagermeister-145",
+    "name": "Jagermeister",
+    "category": "Spirits",
+    "portion": "40ml",
+    "price": 15.0
+  },
+  {
+    "id": "vodka-146",
+    "name": "Vodka",
+    "category": "Spirits",
+    "portion": "40ml",
+    "price": 16.0
+  },
+  {
+    "id": "bacardi-white-rum-147",
+    "name": "Bacardi White Rum",
+    "category": "Spirits",
+    "portion": "40ml",
+    "price": 15.0
+  },
+  {
+    "id": "captain-morgan-rum-148",
+    "name": "Captain Morgan Rum",
+    "category": "Spirits",
+    "portion": "40ml",
+    "price": 15.0
+  },
+  {
+    "id": "j-b-149",
+    "name": "J & B",
+    "category": "Spirits",
+    "portion": "40ml",
+    "price": 15.0
+  },
+  {
+    "id": "jameson-irish-whiskey-150",
+    "name": "Jameson Irish Whiskey",
+    "category": "Spirits",
+    "portion": "40ml",
+    "price": 18.0
+  },
+  {
+    "id": "jack-daniel-151",
+    "name": "Jack Daniel",
+    "category": "Spirits",
+    "portion": "40ml",
+    "price": 18.0
+  },
+  {
+    "id": "chivas-regal-152",
+    "name": "Chivas Regal",
+    "category": "Spirits",
+    "portion": "40ml",
+    "price": 25.0
+  },
+  {
+    "id": "red-label-153",
+    "name": "Red Label",
+    "category": "Spirits",
+    "portion": "40ml",
+    "price": 15.0
+  },
+  {
+    "id": "black-label-154",
+    "name": "Black Label",
+    "category": "Spirits",
+    "portion": "40ml",
+    "price": 25.0
+  },
+  {
+    "id": "house-wine-155",
+    "name": "House Wine",
+    "category": "Wines",
+    "portion": "glass 150ml",
+    "price": 19.0
+  },
+  {
+    "id": "house-wine-156",
+    "name": "House Wine",
+    "category": "Wines",
+    "portion": "bottle 750ml",
+    "price": 79.0
+  },
+  {
+    "id": "beciul-domnesc-157",
+    "name": "Beciul Domnesc",
+    "category": "Wines",
+    "portion": "glass 150ml",
+    "price": 23.0
+  },
+  {
+    "id": "beciul-domnesc-158",
+    "name": "Beciul Domnesc",
+    "category": "Wines",
+    "portion": "bottle 750ml",
+    "price": 93.0
+  },
+  {
+    "id": "cepture-cervus-159",
+    "name": "Cepture Cervus",
+    "category": "Wines",
+    "portion": "glass 150ml",
+    "price": 19.0
+  },
+  {
+    "id": "cepture-cervus-160",
+    "name": "Cepture Cervus",
+    "category": "Wines",
+    "portion": "bottle 750ml",
+    "price": 79.0
+  },
+  {
+    "id": "call-de-la-letea-161",
+    "name": "Call De La Letea",
+    "category": "Wines",
+    "portion": "glass 150ml",
+    "price": 26.0
+  },
+  {
+    "id": "call-de-la-letea-162",
+    "name": "Call De La Letea",
+    "category": "Wines",
+    "portion": "bottle 750ml",
+    "price": 99.0
+  },
+  {
+    "id": "feteasca-neagra-163",
+    "name": "Feteasca Neagra",
+    "category": "Wines",
+    "portion": "glass 150ml",
+    "price": 36.0
+  },
+  {
+    "id": "feteasca-neagra-164",
+    "name": "Feteasca Neagra",
+    "category": "Wines",
+    "portion": "bottle 750ml",
+    "price": 144.0
+  },
+  {
+    "id": "tequila-don-diego-165",
+    "name": "Tequila Don Diego",
+    "category": "Shots",
+    "portion": "30ml",
+    "price": 15.0
+  },
+  {
+    "id": "tequila-camino-166",
+    "name": "Tequila Camino",
+    "category": "Shots",
+    "portion": "30ml",
+    "price": 15.0
+  }
+]

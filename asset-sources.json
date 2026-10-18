@@ -1,0 +1,392 @@
+{
+  "sourceSite": "https://www.globalherbsrestaurantsandbar.com/",
+  "assets": [
+    {
+      "filename": "gallery-01-herbs-food.jpg",
+      "sourceUrl": "https://static.wixstatic.com/media/f28cf1_e1f39852c4f744a2ac2327e21d39fa2d~mv2.jpg",
+      "sourceFilename": "Herbs Food.jpg",
+      "role": "gallery",
+      "index": 1,
+      "expectedDimensions": [
+        2048,
+        1087
+      ],
+      "contentType": "image/jpeg",
+      "bytes": 178949,
+      "dimensions": [
+        2048,
+        1087
+      ],
+      "format": "JPEG"
+    },
+    {
+      "filename": "gallery-02-herbs-food1.jpg",
+      "sourceUrl": "https://static.wixstatic.com/media/f28cf1_691db79d1b3c4ba6890a849b7699af1e~mv2.jpg",
+      "sourceFilename": "Herbs food1.jpg",
+      "role": "gallery",
+      "index": 2,
+      "expectedDimensions": [
+        2048,
+        932
+      ],
+      "contentType": "image/jpeg",
+      "bytes": 210666,
+      "dimensions": [
+        2048,
+        932
+      ],
+      "format": "JPEG"
+    },
+    {
+      "filename": "gallery-03-pork-sekuwa.png",
+      "sourceUrl": "https://static.wixstatic.com/media/ed2cb5_3fd56262e0bf45eca78db74c4ca3444f~mv2.png",
+      "sourceFilename": "Pork Sekuwa.png",
+      "role": "gallery",
+      "index": 3,
+      "expectedDimensions": [
+        1500,
+        2000
+      ],
+      "contentType": "image/png",
+      "bytes": 3656823,
+      "dimensions": [
+        1500,
+        2000
+      ],
+      "format": "PNG"
+    },
+    {
+      "filename": "gallery-04-herbs-food-2.jpg",
+      "sourceUrl": "https://static.wixstatic.com/media/f28cf1_9d3e4c0d382b47ab8a296284f9fd1a24~mv2.jpg",
+      "sourceFilename": "herbs food 2.jpg",
+      "role": "gallery",
+      "index": 4,
+      "expectedDimensions": [
+        1360,
+        658
+      ],
+      "contentType": "image/jpeg",
+      "bytes": 185982,
+      "dimensions": [
+        1360,
+        658
+      ],
+      "format": "JPEG"
+    },
+    {
+      "filename": "gallery-05-pork-vindaloo.png",
+      "sourceUrl": "https://static.wixstatic.com/media/ed2cb5_7930de4ec5d64ea8b82cf5d41c82492c~mv2.png",
+      "sourceFilename": "pork vindaloo.png",
+      "role": "gallery",
+      "index": 5,
+      "expectedDimensions": [
+        1280,
+        1280
+      ],
+      "contentType": "image/png",
+      "bytes": 1632012,
+      "dimensions": [
+        1280,
+        1280
+      ],
+      "format": "PNG"
+    },
+    {
+      "filename": "gallery-06-chicken-steam-momo.png",
+      "sourceUrl": "https://static.wixstatic.com/media/ed2cb5_e7a30df928a047c8ac276dfcba96713a~mv2.png",
+      "sourceFilename": "Chicken steam momo.png",
+      "role": "gallery",
+      "index": 6,
+      "expectedDimensions": [
+        1500,
+        2000
+      ],
+      "contentType": "image/png",
+      "bytes": 2902819,
+      "dimensions": [
+        1500,
+        2000
+      ],
+      "format": "PNG"
+    },
+    {
+      "filename": "gallery-07-chicken-biryani.png",
+      "sourceUrl": "https://static.wixstatic.com/media/ed2cb5_26bdffbab44f4128b83c85b060e4eadc~mv2.png",
+      "sourceFilename": "Chicken BIryani.png",
+      "role": "gallery",
+      "index": 7,
+      "expectedDimensions": [
+        1500,
+        2000
+      ],
+      "contentType": "image/png",
+      "bytes": 2241454,
+      "dimensions": [
+        1500,
+        2000
+      ],
+      "format": "PNG"
+    },
+    {
+      "filename": "gallery-08-cream-of-chicken-soup.png",
+      "sourceUrl": "https://static.wixstatic.com/media/ed2cb5_197e1ded04e54331ba4743c3e8ea36b8~mv2.png",
+      "sourceFilename": "Cream of chicken soup.png",
+      "role": "gallery",
+      "index": 8,
+      "expectedDimensions": [
+        1076,
+        1916
+      ],
+      "contentType": "image/png",
+      "bytes": 3558681,
+      "dimensions": [
+        1076,
+        1916
+      ],
+      "format": "PNG"
+    },
+    {
+      "filename": "gallery-09-chicken-curry.png",
+      "sourceUrl": "https://static.wixstatic.com/media/ed2cb5_ed0f6ad87a814dedb016d70c00d3b18f~mv2.png",
+      "sourceFilename": "Chicken curry.png",
+      "role": "gallery",
+      "index": 9,
+      "expectedDimensions": [
+        1500,
+        2000
+      ],
+      "contentType": "image/png",
+      "bytes": 2831490,
+      "dimensions": [
+        1500,
+        2000
+      ],
+      "format": "PNG"
+    },
+    {
+      "filename": "gallery-10-chicken-fried-rice.jpg",
+      "sourceUrl": "https://static.wixstatic.com/media/ed2cb5_18a2a795ef684d7c8f8403167db707f8~mv2.jpg",
+      "sourceFilename": "Chicken Fried Rice.jpg",
+      "role": "gallery",
+      "index": 10,
+      "expectedDimensions": [
+        1280,
+        1707
+      ],
+      "contentType": "image/jpeg",
+      "bytes": 279121,
+      "dimensions": [
+        1280,
+        1707
+      ],
+      "format": "JPEG"
+    },
+    {
+      "filename": "gallery-11-daal-soup.jpg",
+      "sourceUrl": "https://static.wixstatic.com/media/ed2cb5_f7b0d2228c0c4a75940e2735ea60c8f9~mv2.jpg",
+      "sourceFilename": "Daal soup.jpg",
+      "role": "gallery",
+      "index": 11,
+      "expectedDimensions": [
+        733,
+        1297
+      ],
+      "contentType": "image/jpeg",
+      "bytes": 943439,
+      "dimensions": [
+        733,
+        1297
+      ],
+      "format": "JPEG"
+    },
+    {
+      "filename": "hero-original.webp",
+      "sourceUrl": "https://static.wixstatic.com/media/f28cf1_691db79d1b3c4ba6890a849b7699af1e~mv2.jpg/v1/fill/w_1289,h_932,al_c,q_85,enc_avif,quality_auto/Herbs%20food1.jpg",
+      "role": "hero",
+      "originalDisplayUrl": "https://static.wixstatic.com/media/f28cf1_691db79d1b3c4ba6890a849b7699af1e~mv2.jpg/v1/fill/w_819,h_592,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Herbs%20food1.jpg",
+      "contentType": "image/webp",
+      "bytes": 131174,
+      "dimensions": [
+        1289,
+        932
+      ],
+      "format": "WEBP"
+    },
+    {
+      "filename": "logo-original.webp",
+      "sourceUrl": "https://static.wixstatic.com/media/f28cf1_b2f0518c7d6c44ea922bb1f843c2b7c3~mv2.png/v1/crop/x_0,y_161,w_1024,h_702/fill/w_312,h_214,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/New%20Restaurant%20logo.png",
+      "role": "logo",
+      "originalDisplayUrl": "https://static.wixstatic.com/media/f28cf1_b2f0518c7d6c44ea922bb1f843c2b7c3~mv2.png/v1/crop/x_0,y_161,w_1024,h_702/fill/w_156,h_107,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/New%20Restaurant%20logo.png",
+      "contentType": "image/webp",
+      "bytes": 30910,
+      "dimensions": [
+        312,
+        214
+      ],
+      "format": "WEBP"
+    },
+    {
+      "filename": "avenir-light.woff2",
+      "sourceUrl": "https://static.parastorage.com/fonts/v2/af36905f-3c92-4ef9-b0c1-f91432f16ac1/v1/avenir-lt-w01_35-light1475496.woff2",
+      "role": "font",
+      "fontFamily": "avenir-lt-w01_35-light1475496",
+      "fontWeight": 400,
+      "fontStyle": "normal",
+      "contentType": "font/woff2",
+      "bytes": 17216
+    },
+    {
+      "filename": "cormorant-garamond-400.woff2",
+      "sourceUrl": "https://static.parastorage.com/tag-bundler/api/v1/fonts-cache/googlefont/woff2/s/cormorantgaramond/v16/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtKky2F7g.woff2",
+      "role": "font",
+      "fontFamily": "cormorant garamond",
+      "fontWeight": 400,
+      "fontStyle": "normal",
+      "contentType": "font/woff2",
+      "bytes": 20640
+    },
+    {
+      "filename": "gallery-01-thumb.webp",
+      "sourceUrl": "https://static.wixstatic.com/media/f28cf1_e1f39852c4f744a2ac2327e21d39fa2d~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/f28cf1_e1f39852c4f744a2ac2327e21d39fa2d~mv2.jpg",
+      "role": "galleryThumbnail",
+      "index": 1,
+      "contentType": "image/webp",
+      "dimensions": [
+        480,
+        254
+      ],
+      "format": "WEBP",
+      "bytes": 24450
+    },
+    {
+      "filename": "gallery-02-thumb.webp",
+      "sourceUrl": "https://static.wixstatic.com/media/f28cf1_691db79d1b3c4ba6890a849b7699af1e~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/f28cf1_691db79d1b3c4ba6890a849b7699af1e~mv2.jpg",
+      "role": "galleryThumbnail",
+      "index": 2,
+      "contentType": "image/webp",
+      "dimensions": [
+        480,
+        218
+      ],
+      "format": "WEBP",
+      "bytes": 26884
+    },
+    {
+      "filename": "gallery-03-thumb.webp",
+      "sourceUrl": "https://static.wixstatic.com/media/ed2cb5_3fd56262e0bf45eca78db74c4ca3444f~mv2.png/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/ed2cb5_3fd56262e0bf45eca78db74c4ca3444f~mv2.png",
+      "role": "galleryThumbnail",
+      "index": 3,
+      "contentType": "image/webp",
+      "dimensions": [
+        480,
+        640
+      ],
+      "format": "WEBP",
+      "bytes": 306776
+    },
+    {
+      "filename": "gallery-04-thumb.webp",
+      "sourceUrl": "https://static.wixstatic.com/media/f28cf1_9d3e4c0d382b47ab8a296284f9fd1a24~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/f28cf1_9d3e4c0d382b47ab8a296284f9fd1a24~mv2.jpg",
+      "role": "galleryThumbnail",
+      "index": 4,
+      "contentType": "image/webp",
+      "dimensions": [
+        480,
+        232
+      ],
+      "format": "WEBP",
+      "bytes": 33340
+    },
+    {
+      "filename": "gallery-05-thumb.webp",
+      "sourceUrl": "https://static.wixstatic.com/media/ed2cb5_7930de4ec5d64ea8b82cf5d41c82492c~mv2.png/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/ed2cb5_7930de4ec5d64ea8b82cf5d41c82492c~mv2.png",
+      "role": "galleryThumbnail",
+      "index": 5,
+      "contentType": "image/webp",
+      "dimensions": [
+        480,
+        480
+      ],
+      "format": "WEBP",
+      "bytes": 198940
+    },
+    {
+      "filename": "gallery-06-thumb.webp",
+      "sourceUrl": "https://static.wixstatic.com/media/ed2cb5_e7a30df928a047c8ac276dfcba96713a~mv2.png/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/ed2cb5_e7a30df928a047c8ac276dfcba96713a~mv2.png",
+      "role": "galleryThumbnail",
+      "index": 6,
+      "contentType": "image/webp",
+      "dimensions": [
+        480,
+        640
+      ],
+      "format": "WEBP",
+      "bytes": 260016
+    },
+    {
+      "filename": "gallery-07-thumb.webp",
+      "sourceUrl": "https://static.wixstatic.com/media/ed2cb5_26bdffbab44f4128b83c85b060e4eadc~mv2.png/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/ed2cb5_26bdffbab44f4128b83c85b060e4eadc~mv2.png",
+      "role": "galleryThumbnail",
+      "index": 7,
+      "contentType": "image/webp",
+      "dimensions": [
+        480,
+        640
+      ],
+      "format": "WEBP",
+      "bytes": 240154
+    },
+    {
+      "filename": "gallery-08-thumb.webp",
+      "sourceUrl": "https://static.wixstatic.com/media/ed2cb5_197e1ded04e54331ba4743c3e8ea36b8~mv2.png/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/ed2cb5_197e1ded04e54331ba4743c3e8ea36b8~mv2.png",
+      "role": "galleryThumbnail",
+      "index": 8,
+      "contentType": "image/webp",
+      "dimensions": [
+        359,
+        640
+      ],
+      "format": "WEBP",
+      "bytes": 278746
+    },
+    {
+      "filename": "gallery-09-thumb.webp",
+      "sourceUrl": "https://static.wixstatic.com/media/ed2cb5_ed0f6ad87a814dedb016d70c00d3b18f~mv2.png/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/ed2cb5_ed0f6ad87a814dedb016d70c00d3b18f~mv2.png",
+      "role": "galleryThumbnail",
+      "index": 9,
+      "contentType": "image/webp",
+      "dimensions": [
+        480,
+        640
+      ],
+      "format": "WEBP",
+      "bytes": 274334
+    },
+    {
+      "filename": "gallery-10-thumb.webp",
+      "sourceUrl": "https://static.wixstatic.com/media/ed2cb5_18a2a795ef684d7c8f8403167db707f8~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/ed2cb5_18a2a795ef684d7c8f8403167db707f8~mv2.jpg",
+      "role": "galleryThumbnail",
+      "index": 10,
+      "contentType": "image/webp",
+      "dimensions": [
+        479,
+        640
+      ],
+      "format": "WEBP",
+      "bytes": 56234
+    },
+    {
+      "filename": "gallery-11-thumb.webp",
+      "sourceUrl": "https://static.wixstatic.com/media/ed2cb5_f7b0d2228c0c4a75940e2735ea60c8f9~mv2.jpg/v1/fit/w_480,h_640,q_90,enc_avif,quality_auto/ed2cb5_f7b0d2228c0c4a75940e2735ea60c8f9~mv2.jpg",
+      "role": "galleryThumbnail",
+      "index": 11,
+      "contentType": "image/webp",
+      "dimensions": [
+        361,
+        640
+      ],
+      "format": "WEBP",
+      "bytes": 97266
+    }
+  ]
+}
