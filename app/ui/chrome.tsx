@@ -33,7 +33,7 @@ export function Dialog({ id, label, children, className = "" }: { id: string; la
   </dialog>;
 }
 
-function Header({ active }: { active: "home" | "menu" }) {
+function Header({ active }: { active: "home" | "menu" | "order" | "book" }) {
   const [expanded, setExpanded] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
   useEffect(() => {
@@ -46,9 +46,9 @@ function Header({ active }: { active: "home" | "menu" }) {
       <a className="brand" href="/" aria-label="Global Herbs home"><img src="/assets/logo-original.webp" width="112" height="77" alt="Global Herbs" /></a>
       <button ref={toggle} className="mobile-toggle icon-button" aria-controls="main-nav" aria-expanded={expanded} aria-label={expanded ? "Close navigation" : "Open navigation"} onClick={() => setExpanded(!expanded)}><Icon name={expanded ? "close" : "menu"} size={24} /></button>
       <nav id="main-nav" aria-label="Main navigation" className={expanded ? "main-nav expanded" : "main-nav"} onClick={() => setExpanded(false)}>
-        <a href="/" aria-current={active === "home" ? "page" : undefined}>Home</a><a href="/#about">About</a><a href="/menu" aria-current={active === "menu" ? "page" : undefined}>Our menu</a><a href="/#contact">Contact</a><a href={restaurant.ordering} target="_blank" rel="noopener noreferrer" className="order-link">Order online <Icon name="external" size={14} /></a>
+        <a href="/" aria-current={active === "home" ? "page" : undefined}>Home</a><a href="/#about">About</a><a href="/menu" aria-current={active === "menu" ? "page" : undefined}>Our menu</a><a href="/#contact">Contact</a><a href="/order" aria-current={active === "order" ? "page" : undefined} className="order-link">Order online <Icon name="arrow" size={16} /></a>
       </nav>
-      <button className="button button-gold header-book" onClick={() => openDialog("booking-dialog")}>Book a table</button>
+      <a className="button button-gold header-book" href="/book" aria-current={active === "book" ? "page" : undefined}>Book a table</a>
     </div>
   </header>;
 }
@@ -67,15 +67,11 @@ function Footer() {
   return <footer className="site-footer" id="contact"><div className="container footer-grid">
     <section className="footer-hours"><h2>Opening hours</h2><Hours /><p className="small muted">Local time in Bucharest</p></section>
     <section><h2>Come find us</h2><p>{restaurant.building}<br />Str. Nicolae Tonitza 13<br />București 030167, Romania</p><a className="text-link" href={restaurant.maps} target="_blank" rel="noopener noreferrer">Get directions <Icon name="external" size={15} /></a></section>
-    <section><h2>Let’s talk</h2><a className="phone-link" href={restaurant.phoneHref}>{restaurant.phone}</a><button className="text-link" onClick={() => openDialog("booking-dialog")}>Make a reservation <Icon name="arrow" size={16} /></button><button className="text-link" onClick={() => openDialog("assistant-dialog")}>Menu assistance <Icon name="chat" size={16} /></button></section>
+    <section><h2>Let’s talk</h2><a className="phone-link" href={restaurant.phoneHref}>{restaurant.phone}</a><a className="text-link" href="/book">Make a reservation <Icon name="arrow" size={16} /></a><button className="text-link" onClick={() => openDialog("assistant-dialog")}>AI menu assistant <Icon name="chat" size={16} /></button></section>
     <section><h2>Follow along</h2><a className="social-link" href={restaurant.instagram} target="_blank" rel="noopener noreferrer">Instagram <Icon name="external" size={14} /></a><a className="social-link" href={restaurant.facebook} target="_blank" rel="noopener noreferrer">Facebook <Icon name="external" size={14} /></a><a className="social-link" href={restaurant.tiktok} target="_blank" rel="noopener noreferrer">TikTok <Icon name="external" size={14} /></a><a className="social-link" href={restaurant.experiences} target="_blank" rel="noopener noreferrer">Experiences <Icon name="external" size={14} /></a></section>
   </div><div className="footer-bottom container"><span>Global Herbs · Restaurant & Bar</span><span>Nepali flavours. Bucharest hospitality.</span><a href="#top">Back to top ↑</a></div></footer>;
 }
 
-function Booking() {
-  return <Dialog id="booking-dialog" label="reservations" className="booking-dialog"><p className="eyebrow">WE’D LOVE TO WELCOME YOU</p><h2 id="booking-dialog-title">A table at<br />Global Herbs</h2><p>Join us for a little taste of Nepal. Choose your date, time and party size in our reservation system.</p><a className="button button-green" href={restaurant.reservations} target="_blank" rel="noopener noreferrer">Find a table <Icon name="external" size={17} /></a><p className="small">Opens our existing booking page. Your table is confirmed there.</p><div className="booking-contact"><span>For groups or a personal request</span><a href={restaurant.phoneHref}>{restaurant.phone}</a></div><Hours /></Dialog>;
-}
-
-export default function SiteShell({ active, children }: { active: "home" | "menu"; children: ReactNode }) {
-  return <div id="top"><Header active={active} />{children}<Footer /><Booking /><Assistant /></div>;
+export default function SiteShell({ active, children }: { active: "home" | "menu" | "order" | "book"; children: ReactNode }) {
+  return <div id="top"><Header active={active} />{children}<Footer /><Assistant /></div>;
 }
