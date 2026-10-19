@@ -6,6 +6,7 @@ import { ServiceHeading, ServiceNotice } from "./service-parts";
 import { restaurant } from "../data/restaurant";
 import { displayDate, localDate, preferredTimes } from "../lib/service-drafts";
 import { groupMenus, groupOccasions, menuLabels, occasionLabels, validateBooking, type BookingRequest } from "../lib/booking-request";
+import { submitBooking } from "../lib/booking-delivery";
 
 const initialDetails: BookingRequest = { date: "", time: "", guests: 2, name: "", email: "", phone: "", notes: "", flexibleDate: false, flexibleTime: false, occasion: "", menu: "unsure", budget: "" };
 
@@ -43,14 +44,11 @@ export default function Booking() {
     if (inFlight.current || deliveryUnknown) return;
     inFlight.current = true; setSending(true); setError("");
     try {
-      const response = await fetch("/api/bookings", { method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...details, website, requestId: requestId.current }), signal: AbortSignal.timeout(22_000) });
-      const result = await response.json();
-      if (response.ok && result.sent === true && typeof result.reference === "string") {
+      const result = await submitBooking(details, requestId.current, website);
+      if (result.sent) {
         setReference(result.reference); setStage("sent");
       } else {
-        setError(typeof result.message === "string" ? result.message : "We couldn’t send your request. Please try again or call us.");
-        setDeliveryUnknown(result.code === "DELIVERY_UNKNOWN");
+        setError(result.message); setDeliveryUnknown(Boolean(result.unknown));
       }
     } catch {
       setError("We couldn’t confirm delivery. Please call us before sending again."); setDeliveryUnknown(true);

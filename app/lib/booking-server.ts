@@ -2,8 +2,8 @@ import { groupThreshold, menuLabels, occasionLabels, validateBooking, type Booki
 import { preferredTimes } from "./service-drafts";
 
 type Settings = { recipient: string; formUrl: string; platform?: "vercel" | "cloudflare" };
-type Result = { status: number; body: { code?: string; message?: string; reference?: string; sent?: boolean } };
-type Dependencies = { fetcher?: typeof fetch; now?: () => Date };
+type Result = { status: number; body: { code?: string; message?: string; reference?: string; prepared?: boolean; delivery?: { endpoint: string; fields: Record<string, string> } } };
+type Dependencies = { now?: () => Date };
 const limitBytes = 16_000;
 const retention = 15 * 60_000;
 const reply = (result: Result) => Response.json(result.body, { status: result.status, headers: {
@@ -15,7 +15,7 @@ export function bookingEmail(data: BookingRequest, reference: string, formUrl: s
   const group = data.guests > groupThreshold;
   return {
     _subject: `Global Herbs | ${group ? "GROUP ENQUIRY" : "Table request"} | ${data.guests} guests | ${data.date} | ${reference}`,
-    _template: "table", _url: formUrl, _replyto: data.email,
+    _template: "table", _url: formUrl, _replyto: data.email, _honey: "",
     "Request type": group ? "Group enquiry — capacity, seating and menu must be discussed" : "Table booking request",
     "Status": "NOT CONFIRMED. Please reply to the guest or call them before reserving any table.",
     "Reference": reference, "Guests": String(data.guests), "Preferred date": data.date,
@@ -29,32 +29,17 @@ export function bookingEmail(data: BookingRequest, reference: string, formUrl: s
 }
 
 export function createBookingHandler(settings: Settings, dependencies: Dependencies = {}) {
-  const fetcher = dependencies.fetcher ?? fetch;
   const now = dependencies.now ?? (() => new Date());
   const rates = new Map<string, { count: number; expires: number }>();
-  // Prevent double-clicks and retries within this process. The reference is also
-  // included in email because separate serverless instances do not share memory.
-  const submissions = new Map<string, { fingerprint: string; expires: number; task: Promise<Result> }>();
-
-  async function send(data: BookingRequest, reference: string): Promise<Result> {
-    try {
-      const result = await fetcher(`https://formsubmit.co/ajax/${encodeURIComponent(settings.recipient)}`, {
-        method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json",
-          Referer: settings.formUrl, Origin: new URL(settings.formUrl).origin },
-        body: JSON.stringify(bookingEmail(data, reference, settings.formUrl)), signal: AbortSignal.timeout(15_000),
-      });
-      // Keep a non-sensitive status code for diagnosing provider failures.
-      // Never return the provider's raw response or any guest details.
-      if (!result.ok) return failure(502, `DELIVERY_HTTP_${result.status}`, "We couldn’t send your request. Please try again or call us.");
-      const answer = await result.json() as { success?: unknown; message?: unknown };
-      if (answer.success === true || answer.success === "true") return { status: 200, body: { sent: true, reference } };
-      if (typeof answer.message === "string" && /activat/i.test(answer.message)) return failure(503, "EMAIL_NOT_READY", "Online requests are not available yet. Please call us to arrange your visit.");
-      const code = typeof answer.message === "string" && /web server|HTML files/i.test(answer.message) ? "DELIVERY_SOURCE" : "DELIVERY_REJECTED";
-      return failure(502, code, "We couldn’t send your request. Please try again or call us.");
-    } catch {
-      return failure(504, "DELIVERY_UNKNOWN", "We couldn’t confirm delivery. Please call us before sending again.");
-    }
-  }
+  // Keep only fingerprints and references in memory, never contact details.
+  // Delivery uses FormSubmit's documented browser AJAX flow.
+  const submissions = new Map<string, { fingerprint: string; expires: number; reference: string }>();
+  const prepared = (data: BookingRequest, reference: string) => reply({ status: 200, body: {
+    prepared: true, reference, delivery: {
+      endpoint: `https://formsubmit.co/ajax/${encodeURIComponent(settings.recipient)}`,
+      fields: bookingEmail(data, reference, settings.formUrl),
+    },
+  } });
 
   return async (request: Request): Promise<Response> => {
     if (request.method !== "POST") return reply(failure(405, "METHOD", "Method not allowed."));
@@ -85,7 +70,7 @@ export function createBookingHandler(settings: Settings, dependencies: Dependenc
     for (const [key, value] of submissions) if (value.expires <= tick) submissions.delete(key);
     const fingerprint = [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(JSON.stringify(data))))].map(byte => byte.toString(16).padStart(2, "0")).join("");
     const existing = submissions.get(payload.requestId);
-    if (existing) return reply(existing.fingerprint === fingerprint ? await existing.task : failure(409, "CHANGED", "Your details changed. Please review your request again."));
+    if (existing) return existing.fingerprint === fingerprint ? prepared(data, existing.reference) : reply(failure(409, "CHANGED", "Your details changed. Please review your request again."));
     // Vercel overwrites this forwarding header. On Workers, use Cloudflare's
     // connecting IP. Do not trust arbitrary client headers as identities.
     const address = (settings.platform === "vercel" ? request.headers.get("x-vercel-forwarded-for") : settings.platform === "cloudflare" ? request.headers.get("cf-connecting-ip") : null)?.split(",")[0]?.trim() || "unknown";
@@ -93,12 +78,8 @@ export function createBookingHandler(settings: Settings, dependencies: Dependenc
     if (rate.count >= 5 || rates.size >= 5000 || submissions.size >= 1000) return reply(failure(429, "RATE_LIMIT", "Please wait 15 minutes before sending another request, or call us."));
     rate.count++; rates.set(address, rate);
     const reference = `GH-${payload.requestId.toUpperCase()}`;
-    const task = send(data, reference);
-    submissions.set(payload.requestId, { fingerprint, expires: tick + retention, task });
-    const result = await task;
-    // An unknown result may already have reached the provider: keep its key so
-    // retrying cannot immediately send the same request a second time.
-    if (result.status !== 200 && result.status !== 504) submissions.delete(payload.requestId);
-    return reply(result);
+    submissions.set(payload.requestId, { fingerprint, expires: tick + retention, reference });
+    // This prepares an enquiry; it does not claim that mail has been sent.
+    return prepared(data, reference);
   };
 }

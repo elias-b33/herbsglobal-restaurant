@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { createBookingHandler, bookingEmail } from "../app/lib/booking-server";
 import { validateBooking } from "../app/lib/booking-request";
+import { submitBooking } from "../app/lib/booking-delivery";
 
 const origin = "https://restaurant.example";
 const now = new Date("2026-10-19T13:00:00Z");
@@ -43,9 +44,8 @@ test("Booking email clearly requests manual confirmation and preserves overnight
   assert.match(large["Preferred arrival"], /Flexible/);
 });
 
-test("Booking endpoint rejects foreign origins, oversized bodies, bots and invalid requests before sending", async () => {
-  let calls = 0;
-  const handler = createBookingHandler(setup, { now: () => now, fetcher: (async () => { calls++; return Response.json({success:"true"}); }) as typeof fetch });
+test("Booking endpoint rejects foreign origins, oversized bodies, bots and invalid requests", async () => {
+  const handler = createBookingHandler(setup, { now: () => now });
   assert.equal((await handler(request({}, { Origin: "https://another.example" }))).status, 403);
   assert.equal((await handler(request({}, { "Content-Type": "text/plain" }))).status, 415);
   assert.equal((await handler(request({ notes: "x".repeat(17000) }))).status, 413);
@@ -54,71 +54,97 @@ test("Booking endpoint rejects foreign origins, oversized bodies, bots and inval
   assert.equal((await handler(request({ requestId: "not-a-uuid" }))).status, 400);
   assert.equal((await handler(request({ guests: 0 }))).status, 400);
   assert.equal((await handler(new Request(`${origin}/api/bookings`))).status, 405);
-  assert.equal(calls, 0);
 });
 
-test("Table and group requests use only the server-owned recipient and safe payload fields", async () => {
-  let calls = 0;
-  const handler = createBookingHandler(setup, { now: () => now, fetcher: (async (url, options) => {
-    calls++; assert.equal(String(url), "https://formsubmit.co/ajax/bookings%40example.test");
-    const payload = JSON.parse(String(options?.body));
-    assert.equal(payload._replyto, valid.email); assert.equal(payload._url, setup.formUrl);
-    assert.equal(new Headers(options?.headers).get("referer"), setup.formUrl);
-    assert.equal(payload._cc, undefined); assert.equal(payload.recipient, undefined);
-    assert.match(payload.Status, /NOT CONFIRMED/);
-    return Response.json({ success: "true", message: "Form successfully submitted" });
-  }) as typeof fetch });
+test("The server prepares safe table/group payloads without claiming an email was sent", async () => {
+  const handler = createBookingHandler(setup, { now: () => now });
   for (const guests of [2, 10, 11, 30, 60]) {
     const response = await handler(request({ guests, _cc: "attacker@example.test", recipient: "attacker@example.test" }));
     assert.equal(response.status, 200);
-    assert.deepEqual(Object.keys(await response.json()).sort(), ["reference", "sent"]);
+    const body = await response.json();
+    assert.equal(body.prepared, true); assert.equal(body.sent, undefined);
+    assert.equal(body.delivery.endpoint, "https://formsubmit.co/ajax/bookings%40example.test");
+    assert.equal(body.delivery.fields._replyto, valid.email);
+    assert.equal(body.delivery.fields._url, setup.formUrl);
+    assert.equal(body.delivery.fields._cc, undefined);
+    assert.equal(body.delivery.fields.recipient, undefined);
+    assert.match(body.delivery.fields.Status, /NOT CONFIRMED/);
+    assert.equal(body.delivery.fields.Guests, String(guests));
   }
-  assert.equal(calls, 5);
 });
 
-test("Concurrent booking retries send one email and changed payloads cannot reuse the reference", async () => {
-  let calls = 0;
-  const handler = createBookingHandler(setup, { now: () => now, fetcher: (async () => { calls++; await Promise.resolve(); return Response.json({ success: true }); }) as typeof fetch });
+test("Preparing the same request keeps its reference and rejects changed details", async () => {
+  const handler = createBookingHandler(setup, { now: () => now });
   const requestId = crypto.randomUUID();
   const responses = await Promise.all([handler(request({ requestId })), handler(request({ requestId }))]);
   assert.deepEqual(await responses[0].json(), await responses[1].json());
-  assert.equal(calls, 1);
   assert.equal((await handler(request({ requestId, guests: 3 }))).status, 409);
-  assert.equal(calls, 1);
 });
 
-test("Provider failures and activation requests never return a successful booking acknowledgement", async () => {
-  for (const [status, provider] of [
-    [503, () => Response.json({ success: "false", message: "This form needs Activation. Activate Form." })],
-    [502, () => Response.json({ success: "false", message: "Internal sensitive information" })],
-    [502, () => new Response("Internal sensitive information", { status: 500 })],
-  ] as const) {
-    const handler = createBookingHandler(setup, { now: () => now, fetcher: (async () => provider()) as typeof fetch });
-    const response = await handler(request()); assert.equal(response.status, status);
-    const body = await response.json(); assert.equal(body.sent, undefined);
-    assert.doesNotMatch(JSON.stringify(body), /Internal sensitive information/);
+test("Only explicit provider acceptance produces the browser success acknowledgement", async () => {
+  const handler = createBookingHandler(setup, { now: () => now });
+  const prepared = await (await handler(request())).json();
+  for (const accepted of [true, "true"]) {
+    let calls = 0;
+    const result = await submitBooking(valid, crypto.randomUUID(), "", (async (url, options) => {
+      calls++;
+      if (url === "/api/bookings") return Response.json(prepared);
+      assert.equal(url, prepared.delivery.endpoint);
+      assert.deepEqual(JSON.parse(String(options?.body)), prepared.delivery.fields);
+      assert.equal(options?.credentials, "omit");
+      assert.equal(options?.referrer, "https://herbsglobal-restaurants.vercel.app/book");
+      return Response.json({ success: accepted });
+    }) as typeof fetch);
+    assert.deepEqual(result, { sent: true, reference: prepared.reference }); assert.equal(calls, 2);
+  }
+  for (const provider of [
+    () => Response.json({ success: "false", message: "This form needs Activation." }),
+    () => Response.json({ success: "false", message: "Internal sensitive information" }),
+    () => new Response("Internal sensitive information", { status: 403 }),
+    () => Response.json({ success: false }),
+  ]) {
+    const result = await submitBooking(valid, crypto.randomUUID(), "", (async url =>
+      url === "/api/bookings" ? Response.json(prepared) : provider()
+    ) as typeof fetch);
+    assert.equal(result.sent, undefined);
+    assert.doesNotMatch(JSON.stringify(result), /Internal sensitive information/);
   }
 });
 
-test("Unknown delivery results are not automatically sent again", async () => {
-  let calls = 0;
-  const handler = createBookingHandler(setup, { now: () => now, fetcher: (async () => { calls++; throw new Error("connection lost"); }) as typeof fetch });
-  const requestId = crypto.randomUUID();
-  for (let i = 0; i < 2; i++) {
-    const response = await handler(request({ requestId }));
-    assert.equal(response.status, 504); assert.equal((await response.json()).code, "DELIVERY_UNKNOWN");
+test("Browser delivery rejects invalid preparation and treats ambiguous provider results cautiously", async () => {
+  const handler = createBookingHandler(setup, { now: () => now });
+  const prepared = await (await handler(request())).json();
+  for (const bad of [
+    () => Response.json({ message: "Please check your booking details." }, { status: 400 }),
+    () => Response.json({ sent: true, reference: "false-success" }),
+    () => Response.json({ ...prepared, delivery: { ...prepared.delivery, endpoint: "https://another.example/collect" } }),
+    () => { throw new Error("Preparation connection lost"); },
+  ]) {
+    let calls = 0;
+    const result = await submitBooking(valid, crypto.randomUUID(), "", (async () => { calls++; return bad(); }) as typeof fetch);
+    assert.equal(result.sent, undefined); assert.equal(calls, 1);
   }
-  assert.equal(calls, 1);
+  for (const fail of [
+    () => { throw new Error("Provider connection lost"); },
+    () => new Response("Provider error", { status: 500 }),
+    () => new Response("Not JSON"),
+  ]) {
+    let calls = 0;
+    const result = await submitBooking(valid, crypto.randomUUID(), "", (async url => {
+      calls++; return url === "/api/bookings" ? Response.json(prepared) : fail();
+    }) as typeof fetch);
+    assert.equal(result.sent, undefined);
+    assert.ok(!result.sent && result.unknown); assert.equal(calls, 2);
+  }
 });
 
-test("Booking burst limits use the platform address, expire, and keep different visitors separate", async () => {
-  let tick = now.getTime(); let calls = 0;
-  const handler = createBookingHandler(setup, { now: () => new Date(tick), fetcher: (async () => { calls++; return Response.json({success:"true"}); }) as typeof fetch });
+test("Booking preparation limits use the platform address, expire, and keep visitors separate", async () => {
+  let tick = now.getTime();
+  const handler = createBookingHandler(setup, { now: () => new Date(tick) });
   for (let i = 0; i < 5; i++) assert.equal((await handler(request())).status, 200);
   const limited = await handler(request({}, { "x-forwarded-for": "spoofed-address" }));
   assert.equal(limited.status, 429); assert.equal(limited.headers.get("retry-after"), "900");
   assert.equal((await handler(request({}, { "x-vercel-forwarded-for": "192.0.2.2" }))).status, 200);
   tick += 15 * 60_000 + 1;
   assert.equal((await handler(request())).status, 200);
-  assert.equal(calls, 7);
 });
