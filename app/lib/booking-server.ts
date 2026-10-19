@@ -43,11 +43,14 @@ export function createBookingHandler(settings: Settings, dependencies: Dependenc
           Referer: settings.formUrl, Origin: new URL(settings.formUrl).origin },
         body: JSON.stringify(bookingEmail(data, reference, settings.formUrl)), signal: AbortSignal.timeout(15_000),
       });
-      if (!result.ok) return failure(502, "DELIVERY_UNAVAILABLE", "We couldn’t send your request. Please try again or call us.");
+      // Keep a non-sensitive status code for diagnosing provider failures.
+      // Never return the provider's raw response or any guest details.
+      if (!result.ok) return failure(502, `DELIVERY_HTTP_${result.status}`, "We couldn’t send your request. Please try again or call us.");
       const answer = await result.json() as { success?: unknown; message?: unknown };
       if (answer.success === true || answer.success === "true") return { status: 200, body: { sent: true, reference } };
       if (typeof answer.message === "string" && /activat/i.test(answer.message)) return failure(503, "EMAIL_NOT_READY", "Online requests are not available yet. Please call us to arrange your visit.");
-      return failure(502, "DELIVERY_UNAVAILABLE", "We couldn’t send your request. Please try again or call us.");
+      const code = typeof answer.message === "string" && /web server|HTML files/i.test(answer.message) ? "DELIVERY_SOURCE" : "DELIVERY_REJECTED";
+      return failure(502, code, "We couldn’t send your request. Please try again or call us.");
     } catch {
       return failure(504, "DELIVERY_UNKNOWN", "We couldn’t confirm delivery. Please call us before sending again.");
     }
