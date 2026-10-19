@@ -4,6 +4,7 @@ import { useLanguage } from "./language";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { restaurant } from "../data/restaurant";
 import { openingStatus } from "../lib/opening";
+import { resolveLocale } from "../lib/i18n";
 import Assistant from "./assistant";
 
 export function Icon({ name, size = 20 }: { name: string; size?: number }) {
@@ -19,6 +20,7 @@ export function Icon({ name, size = 20 }: { name: string; size?: number }) {
     phone: <path d="m8 3 3 5-3 2c1 3 3 5 6 6l2-3 5 3-1 4c-1 2-8 0-12-4S2 5 4 4l4-1Z" />,
     chat: <><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-1 1v-9.5A8.5 8.5 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5Z" /><path d="M7 9h10M7 13h7" /></>,
     expand: <path d="M8 3H3v5M16 3h5v5M21 16v5h-5M8 21H3v-5" />,
+    globe: <><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z" /></>,
   };
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name] ?? paths.arrow}</svg>;
 }
@@ -36,7 +38,7 @@ export function Dialog({ id, label, children, className = "" }: { id: string; la
 }
 
 function Header({ active }: { active: "home" | "menu" | "order" | "book" }) {
-  const { t, l } = useLanguage();
+  const { t, l, locale, changeLanguage } = useLanguage();
   const [expanded, setExpanded] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
   useEffect(() => {
@@ -51,6 +53,11 @@ function Header({ active }: { active: "home" | "menu" | "order" | "book" }) {
       <nav id="main-nav" aria-label={t("Main navigation")} className={expanded ? "main-nav expanded" : "main-nav"} onClick={() => setExpanded(false)}>
         <a href={l("/")} aria-current={active === "home" ? "page" : undefined}>{t("Home")}</a><a href={l("/#about")}>{t("About")}</a><a href={l("/menu")} aria-current={active === "menu" ? "page" : undefined}>{t("Our menu")}</a><a href={l("/#contact")}>{t("Contact")}</a><a href={l("/order")} aria-current={active === "order" ? "page" : undefined} className="order-link">{t("Order online")} <Icon name="arrow" size={16} /></a>
       </nav>
+      <label className="language-switcher"><span><Icon name="globe" size={17} />{t("Language")}</span>
+        <select aria-label={t("Choose language")} value={locale} onChange={event => changeLanguage(resolveLocale(event.target.value))}>
+          <option value="en" lang="en">English</option><option value="ro" lang="ro">Română</option><option value="ne" lang="ne">नेपाली</option>
+        </select>
+      </label>
       <a className="button button-gold header-book" href={l("/book")} aria-current={active === "book" ? "page" : undefined}>{t("Book a table")}</a>
     </div>
   </header>;

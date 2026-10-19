@@ -250,3 +250,32 @@
 .language-root:lang(ne) .dish-info>p{line-height:1.7}
 .language-root:lang(ro) .category-field select,.language-root:lang(ne) .category-field select{width:270px;max-width:100%}
 @media(max-width:900px){.language-root:lang(ro) .category-field select,.language-root:lang(ne) .category-field select{width:100%}}
+
+/* A visible language choice, with the same quiet green and gold styling. */
+.language-switcher{display:block;flex:0 0 132px;font-family:Avenir,'Noto Sans Devanagari','Segoe UI',sans-serif}
+.language-switcher>span{display:flex;align-items:center;gap:7px;font-size:12px;line-height:1.4;color:var(--gold);margin-bottom:5px}
+.language-switcher select{display:block;width:100%;min-height:44px;padding:8px 10px;border:1px solid var(--gold);border-radius:0;background:var(--green);color:var(--cream);font:inherit;font-size:16px;line-height:1.4;cursor:pointer;color-scheme:dark}
+.language-switcher select:hover{background:#214e26}
+@media(min-width:1151px){.header-inner{gap:24px}.main-nav{gap:22px}}
+@media(max-width:1150px){
+  .header-inner{gap:20px}
+  .language-switcher{margin-left:auto;order:1}
+  .header-book{order:2;margin-left:0}
+  .mobile-toggle{display:flex;order:3}
+  .main-nav{display:none;position:absolute;left:0;right:0;top:100%;margin:0;background:var(--green);padding:15px 32px 25px;border-top:1px solid #547044;font-size:17px}
+  .main-nav.expanded{display:flex;flex-direction:column;align-items:stretch;gap:0}
+  .main-nav>a{padding:13px 0}
+  .main-nav .order-link{display:flex}
+}
+@media(max-width:680px){
+  html{scroll-padding-top:150px}
+  .header-inner{display:grid;grid-template-columns:auto minmax(0,1fr) 44px;column-gap:8px;row-gap:9px;min-height:0;padding-block:12px}
+  .brand{grid-column:1;grid-row:1}
+  .brand img{width:76px}
+  .header-book{grid-column:2;grid-row:1;justify-self:end;margin:0}
+  .mobile-toggle{grid-column:3;grid-row:1;margin:0}
+  .language-switcher{grid-column:1/-1;grid-row:2;display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0;padding-top:9px;border-top:1px solid #547044}
+  .language-switcher>span{font-size:14px;margin:0}
+  .language-switcher select{width:155px}
+  .main-nav{padding-inline:20px}
+}

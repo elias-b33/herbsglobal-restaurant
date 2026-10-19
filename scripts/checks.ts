@@ -73,7 +73,7 @@ test("Structured data cannot break out of its script element", () => {
   assert.deepEqual(JSON.parse(encoded), payload);
 });
 
-test("Languages are explicit opt-ins and links preserve searches and anchors", async () => {
+test("Language changes preserve searches and anchors and can return to English", async () => {
   assert.equal(await pageLocale(undefined), "en");
   assert.equal(resolveLocale(["ro", "ne"]), "en");
   assert.equal(resolveLocale("fr"), "en");
@@ -81,6 +81,8 @@ test("Languages are explicit opt-ins and links preserve searches and anchors", a
   assert.equal(localizedHref("/menu?q=momo#main", "ro"), "/menu?q=momo&lang=ro#main");
   assert.equal(localizedHref("/#contact", "ne"), "/?lang=ne#contact");
   assert.equal(localizedHref("/menu", "en"), "/menu");
+  assert.equal(localizedHref("/menu?q=momo&lang=ro#main", "en"), "/menu?q=momo#main");
+  assert.equal(localizedHref("/book?lang=ro&lang=ne#main", "ne"), "/book?lang=ne#main");
   assert.equal(localizedHref("#basket", "ne"), "#basket");
   assert.equal(localizedHref("https://example.com/", "ro"), "https://example.com/");
   assert.equal(localizedHref("//example.com/", "ne"), "//example.com/");

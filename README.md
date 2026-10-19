@@ -39,11 +39,11 @@ Mottagare och formulärets adress konfigureras i `app/api/bookings/route.ts`. Se
 
 `scripts/booking-checks.ts` testar validering, 10/11-gränsen, 30/60 personer, e-postpayload, manipulation, dubbelklick, leveransfel, aktivering och anropsbegränsning med en simulerad leverantör. Automatiska tester skickar aldrig riktiga mejl. Den tidigare levererade offline-ZIP-filen har inte uppdaterats till aktiv mejlbokning.
 
-## Språk för granskning
+## Språkval
 
-Engelska är fortfarande standardspråk. Rumänska (`ro`) och nepali (`ne`, devanagarisk skrift) finns på startsidan, menyn, takeaway- och bokningssidorna samt i AI-panelen. Det finns ingen synlig språkknapp, automatisk språkdetektering eller sparad språkpreferens.
+Engelska är standardspråk. Ett synligt språkval i sidhuvudet erbjuder **English**, **Română** och **नेपाली**. På mobilen ligger det på en egen rad, synlig även när navigationsmenyn är stängd. Rumänska (`ro`) och nepali (`ne`, devanagarisk skrift) finns på startsidan, menyn, takeaway- och bokningssidorna samt i AI-panelen.
 
-Förhandsgranska med `?lang=ro` eller `?lang=ne`, till exempel `/menu?lang=ro` och `/book?lang=ne`. Interna länkar behåller språket, sökparametrar och ankarlänkar. Den vanliga adressen utan `lang` visar engelska. Okända eller upprepade språkparametrar faller tillbaka till engelska. Innehållet renderas på servern på valt språk; sidtitlar och tillgänglighetsetiketter följer samma språk. Språkförhandsvisningarna är markerade `noindex` tills restaurangen vill göra dem synliga.
+Språkvalet uppdaterar texten direkt, utan att radera bokningsuppgifter, menyfilter eller varukorg. Valet följer med i adressen som `?lang=ro` eller `?lang=ne`, till exempel `/menu?lang=ro`. Interna länkar behåller språket, övriga sökparametrar och ankarlänkar. Engelska tar bort språkparametern. Direktlänkar och omladdning renderas på servern på valt språk; sidtitlar och tillgänglighetsetiketter följer samma språk. Okända eller upprepade språkparametrar faller tillbaka till engelska. Ingen automatisk språkdetektering eller separat lagring av språkpreferensen används. Indexering och canonical följer webbplatsens befintliga lanseringsregler.
 
 `app/data/translations.ts` och `app/data/menu-translations.ts` innehåller översättningarna. Produktnamn för internationella drycker behålls. Meny-ID:n, priser, mängder och sparade favoriter/varukorgar delas mellan språken. Sökningen accepterar både originalnamn och översatta namn, även rumänska utan diakritiska tecken, och behåller nepaliska vokaltecken. Datum använder gregoriansk kalender och tider fortsätter följa Europe/Bucharest. Priserna är alltid i RON.
 
@@ -108,7 +108,7 @@ Vid en godkänd offentlig lansering behöver webbansvarig:
 
 1. Kontrollera namn, adress, telefon, samtliga öppettider, priser och aktuell meny med ägaren. Behåll befintliga fungerande Wix-tjänster och adresser under flytten; takeaway är ännu ett utkast och mejlbokningar kräver manuell hantering.
 2. Driftsätta på den officiella domänen, ordna omdirigeringar för gamla URL:er och välja en enda huvudadress för www/utan www. Canonical-domänen i `search-config.ts` ska motsvara den faktiska domänen och bildernas URL:er måste fungera där.
-3. Sätta `publicLaunch: true`, bygga och publicera. Startsidan och `/menu` får då indexeras och finns i sitemap.xml. `robots.txt` tillåter vanliga sökrobotar och OAI-SearchBot, men inte API-rutter. Order/bokning samt `q`- och `lang`-förhandsvisningar förblir `noindex`. Först efter språkgranskning och ett separat beslut bör översättningarna få indexeras och läggas till i hreflang/sitemap. Ingen språkknapp har lagts till.
+3. Sätta `publicLaunch: true`, bygga och publicera. Startsidan och `/menu` får då indexeras och finns i sitemap.xml. `robots.txt` tillåter vanliga sökrobotar och OAI-SearchBot, men inte API-rutter. Order/bokning samt adresser med `q` eller `lang` förblir `noindex`. Språkväxlaren är synlig; indexering av översättningarna och hreflang/sitemap behöver beslutas separat inför lansering på den officiella domänen.
 4. Kontrollera att hosting, brandvägg och inloggningsskydd faktiskt släpper fram offentliga besökare och sökrobotar. Att bara ändra robots.txt öppnar inte en privat Sites-sida.
 5. Verifiera domänen i Google Search Console och Bing Webmaster Tools, skicka in `/sitemap.xml` och kontrollera hemsidan och menyn med URL-granskning. Granska Restaurant-markeringen i Googles Rich Results Test. Följ upp indexering och sökvisningar; ingen viss placering kan garanteras.
 6. Se över restaurangens Google Företagsprofil: rätt kategori, adress, telefon, menyadress, öppettider och egna foton. Be verkliga gäster om ärliga recensioner och svara på dem. Kontrollera samma grunduppgifter på restaurangens sociala profiler och lokala kataloger.

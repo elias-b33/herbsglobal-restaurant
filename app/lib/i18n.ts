@@ -14,11 +14,12 @@ export function translate(locale: Locale, key: string, values: Record<string, st
   return message.replace(/\{(\w+)\}/g, (placeholder, name: string) => String(values[name] ?? placeholder));
 }
 
-// Opt-in preview links only: no browser detection, persistence, or visible switcher.
+// Keep the chosen language in links, preserving searches and section anchors.
 export function localizedHref(href: string, locale: Locale) {
-  if (!href.startsWith("/") || href.startsWith("//") || locale === "en") return href;
+  if (!href.startsWith("/") || href.startsWith("//")) return href;
   const url = new URL(href, "https://global-herbs.invalid");
-  url.searchParams.set("lang", locale);
+  if (locale === "en") url.searchParams.delete("lang");
+  else url.searchParams.set("lang", locale);
   return `${url.pathname}${url.search}${url.hash}`;
 }
 
