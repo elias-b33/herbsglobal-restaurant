@@ -6,6 +6,10 @@ import { restaurant } from "../data/restaurant";
 
 export function ServiceNotice({ booking = false }: { booking?: boolean }) {
   const { t } = useLanguage();
+  if (booking) return <aside className="service-notice" aria-label={t("Booking information")}>
+    <span className="eyebrow">{t("BY REQUEST")}</span>
+    <p>{t("Send your preferred details to our team. Your table is reserved only after the restaurant confirms it personally.")} <a href={restaurant.phoneHref}>{t("For a same-day visit, please call")} <Icon name="phone" size={15} /></a></p>
+  </aside>;
   return <aside className="service-notice" aria-label={t("Preview information")}>
     <span className="eyebrow">{t("Preview")}</span>
     <p>{booking ? t("Online booking is being set up. Explore the form below; no reservation will be sent.") : t("Online ordering is being set up. Explore the menu and basket; no order will be sent.")} <a href={restaurant.phoneHref}>{t(booking ? "Call us to book" : "Call us to order")} <Icon name="phone" size={15} /></a></p>

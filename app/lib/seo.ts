@@ -7,7 +7,7 @@ export const pageCopy = {
   home: ["Global Herbs · Nepali Restaurant & Bar in Bucharest", "Nepali restaurant and bar on Str. Nicolae Tonitza 13, Bucharest. Explore mo:mo, curries, dal bhat and drinks, with menu prices and opening hours."],
   menu: ["Nepali food & drinks menu in Bucharest · Global Herbs", "Browse the Global Herbs menu: mo:mo, curries, dal bhat, biryani and drinks. See portions and prices in RON at our Nepali restaurant in Bucharest."],
   order: ["Takeaway menu preview · Global Herbs, Bucharest", "Explore the Global Herbs takeaway menu and build your order. Call the restaurant to confirm collection."],
-  book: ["Plan your visit · Global Herbs, Bucharest", "Plan your visit to Global Herbs, Bucharest. Choose your preferred details and call us to confirm your table."],
+  book: ["Plan your visit · Global Herbs, Bucharest", "Request a table or plan a group visit at Global Herbs, Bucharest. Send your preferences and our team will confirm availability personally."],
 } as const;
 export type SearchPage = keyof typeof pageCopy;
 export const pagePath = (page: SearchPage) => page === "home" ? "/" : `/${page}`;

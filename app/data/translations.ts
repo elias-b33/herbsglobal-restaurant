@@ -1,6 +1,8 @@
+import { bookingTranslations } from "./booking-translations";
 // English is the public default. Each entry contains Romanian, then Nepali.
 // Restaurant and product names stay recognisable; prices and ingredients are never translated into new facts.
 export const translations: Record<string, readonly [string, string]> = {
+  ...bookingTranslations,
   "NEPALI RESTAURANT & BAR · BUCHAREST": ["RESTAURANT NEPALEZ & BAR · BUCUREȘTI", "नेपाली रेस्टुरेन्ट र बार · बुखारेस्ट"],
   "NEPALI COOKING IN BUCHAREST": ["BUCĂTĂRIE NEPALEZĂ ÎN BUCUREȘTI", "बुखारेस्टमा नेपाली खाना"],
   "Planning your visit": ["Planifică-ți vizita", "आफ्नो भ्रमणको योजना बनाउनुहोस्"],

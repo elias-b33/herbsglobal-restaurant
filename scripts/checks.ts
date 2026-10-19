@@ -1,4 +1,5 @@
 import test from "node:test";
+import "./booking-checks";
 import assert from "node:assert/strict";
 import { handleAssistant } from "../app/lib/assistant-server";
 import { openingStatus } from "../app/lib/opening";

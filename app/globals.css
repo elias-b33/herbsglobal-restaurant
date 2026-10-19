@@ -108,6 +108,22 @@
 .service-section-heading h2{font-size:36px;scroll-margin-top:145px}
 .service-section-heading .small{color:var(--muted);font-size:13px}
 .booking-form{display:grid;gap:24px}
+.group-booking-fields{margin:0;padding:24px;border:1px solid var(--line);display:grid;gap:20px;background:#f5eddd;min-width:0}
+.group-booking-fields legend{font-family:var(--serif);font-size:28px;padding:0 8px}
+.group-booking-fields>p{font-size:15px;line-height:1.8}
+.group-size-shortcuts{display:flex;flex-wrap:wrap;gap:10px;margin-top:-7px}
+.group-size-shortcuts button{border:1px solid #a6ac94;min-height:44px;padding:9px 14px;font-size:15px}
+.group-size-shortcuts button[aria-pressed=true]{background:var(--green);color:var(--cream);border-color:var(--green)}
+.booking-flexibility{display:grid;gap:14px}
+.booking-flexibility label{display:flex;align-items:start;gap:12px;font-size:15px}
+.booking-flexibility input[type=checkbox]{width:19px;min-width:19px;min-height:19px;height:19px;margin:2px 0 0;padding:0;accent-color:var(--green)}
+.booking-honeypot{display:none}
+.booking-send-actions{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin:28px 0 18px}
+.booking-send-actions button:disabled{opacity:.55;cursor:wait}
+.booking-success>p{font-size:16px;line-height:1.8;margin-bottom:20px}
+.booking-success>.form-guidance{font-size:14px;margin-top:22px}
+.booking-reference{padding:18px 20px;border-left:3px solid var(--green);background:#f2e6cd;overflow-wrap:anywhere}
+.booking-reference strong{font-size:13px;font-weight:400}
 .visit-fields{display:grid;grid-template-columns:1.2fr .9fr 1.1fr;gap:18px}
 .contact-fields{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .form-guidance{font-size:14px;line-height:1.8;color:var(--muted)}
