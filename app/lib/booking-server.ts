@@ -1,4 +1,4 @@
-import { groupThreshold, menuLabels, occasionLabels, validateBooking, type BookingRequest } from "./booking-request";
+import { groupThreshold, occasionLabels, validateBooking, type BookingRequest } from "./booking-request";
 import { preferredTimes } from "./service-drafts";
 
 type Settings = { recipient: string; formUrl: string; platform?: "vercel" | "cloudflare" };
@@ -16,14 +16,13 @@ export function bookingEmail(data: BookingRequest, reference: string, formUrl: s
   return {
     _subject: `Global Herbs | ${group ? "GROUP ENQUIRY" : "Table request"} | ${data.guests} guests | ${data.date} | ${reference}`,
     _template: "table", _url: formUrl, _replyto: data.email, _honey: "",
-    "Request type": group ? "Group enquiry — capacity, seating and menu must be discussed" : "Table booking request",
+    "Request type": group ? "Group enquiry — capacity and seating must be discussed" : "Table booking request",
     "Status": "NOT CONFIRMED. Please reply to the guest or call them before reserving any table.",
     "Reference": reference, "Guests": String(data.guests), "Preferred date": data.date,
     "Preferred arrival": data.flexibleTime ? "Flexible — please arrange with the guest" : preferredTimes(data.date).find(time => time.value === data.time)!.label,
     "Time zone": "Europe/Bucharest", "Date flexibility": data.flexibleDate ? "Alternative dates are possible" : "Preferred date as shown",
     name: data.name, email: data.email, "Phone": data.phone,
-    ...(group ? { "Occasion": occasionLabels[data.occasion] || "Not specified", "Menu preference": menuLabels[data.menu],
-      "Budget per person": data.budget ? `${data.budget} RON (guest's preference, not an agreed price)` : "To discuss" } : {}),
+    ...(group ? { "Occasion": occasionLabels[data.occasion] || "Not specified" } : {}),
     "Guest notes": data.notes || "None", "Next step": "Use Reply to contact the guest. This email does not confirm availability or a booking.",
   };
 }

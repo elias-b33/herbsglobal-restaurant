@@ -5,11 +5,11 @@ import SiteShell, { Hours, Icon } from "./chrome";
 import { ServiceHeading, ServiceNotice } from "./service-parts";
 import { restaurant } from "../data/restaurant";
 import { displayDate, localDate, preferredTimes } from "../lib/service-drafts";
-import { groupMenus, groupOccasions, menuLabels, occasionLabels, validateBooking, type BookingRequest } from "../lib/booking-request";
+import { groupOccasions, occasionLabels, validateBooking, type BookingRequest } from "../lib/booking-request";
 import { submitBooking } from "../lib/booking-delivery";
 import DirectionsLink from "./directions-link";
 
-const initialDetails: BookingRequest = { date: "", time: "", guests: 2, name: "", email: "", phone: "", notes: "", flexibleDate: false, flexibleTime: false, occasion: "", menu: "unsure", budget: "" };
+const initialDetails: BookingRequest = { date: "", time: "", guests: 2, name: "", email: "", phone: "", notes: "", flexibleDate: false, flexibleTime: false, occasion: "" };
 
 export default function Booking() {
   const { t, locale, countText, l } = useLanguage();
@@ -60,9 +60,7 @@ export default function Booking() {
     <div><dt>{t("Date")}</dt><dd>{displayDate(details.date, locale)}{details.flexibleDate && <><br /><span className="small">{t("Alternative dates are possible")}</span></>}</dd></div>
     <div><dt>{t("Preferred time")}</dt><dd>{details.flexibleTime ? t("Flexible — arrange with the team") : times.find(time => time.value === details.time)?.label}</dd></div>
     <div><dt>{t("Guests")}</dt><dd>{countText(details.guests, "guest")}{group && <><br /><span className="small">{t("Group enquiry")}</span></>}</dd></div>
-    {group && <><div><dt>{t("Occasion")}</dt><dd>{details.occasion ? t(occasionLabels[details.occasion]) : t("Not specified")}</dd></div>
-      <div><dt>{t("Menu preference")}</dt><dd>{t(menuLabels[details.menu] || "Help us decide")}</dd></div>
-      {details.budget && <div><dt>{t("Budget per person")}</dt><dd>{details.budget} RON</dd></div>}</>}
+    {group && <div><dt>{t("Occasion")}</dt><dd>{details.occasion ? t(occasionLabels[details.occasion]) : t("Not specified")}</dd></div>}
     <div><dt>{t("Name")}</dt><dd>{details.name}</dd></div><div><dt>{t("Email")}</dt><dd>{details.email}</dd></div>
     <div><dt>{t("Phone")}</dt><dd>{details.phone}</dd></div>
     {details.notes && <div><dt>{t("Special requests")}</dt><dd>{details.notes}</dd></div>}
@@ -91,19 +89,17 @@ export default function Booking() {
             <div className="visit-fields">
               <label>{t("Guests")}<select value={group ? "group" : details.guests} onChange={event => {
                 const large = event.target.value === "group"; setGroup(large);
-                setDetails(current => ({ ...current, guests: large ? 12 : Number(event.target.value), flexibleDate: false, flexibleTime: false, occasion: "", menu: "unsure", budget: "" })); setError("");
+                setDetails(current => ({ ...current, guests: large ? 12 : Number(event.target.value), flexibleDate: false, flexibleTime: false, occasion: "" })); setError("");
               }}>{Array.from({ length: 10 }, (_, index) => <option key={index + 1} value={index + 1}>{countText(index + 1, "guest")}</option>)}<option value="group">{t("11+ guests — group enquiry")}</option></select></label>
               <label>{t(group ? "Preferred date" : "Date")}<input type="date" min={today || undefined} value={details.date} required onChange={event => { const date = event.target.value; setDetails(current => ({ ...current, date, time: "" })); setError(date && !preferredTimes(date).length ? "We’re closed on Tuesdays. Please choose another day." : ""); }} /></label>
               <label>{t(group ? "Approximate arrival" : "Preferred time")}<select value={details.time} required={!details.flexibleTime} disabled={!times.length || details.flexibleTime} onChange={event => update("time", event.target.value)}><option value="">{t(details.flexibleTime ? "Flexible — arrange with the team" : details.date ? "Choose a time" : "Choose a date first")}</option>{times.map(time => <option key={time.value} value={time.value}>{time.label}</option>)}</select></label>
             </div>
             {group && <fieldset className="group-booking-fields"><legend>{t("A little more about your group")}</legend>
-              <p>{t("From 11 guests to a larger gathering, tell us what you have in mind. Seating, capacity and any group menu will be agreed with our team.")}</p>
+              <p>{t("From 11 guests to a larger gathering, tell us what you have in mind. Seating and capacity will be agreed with our team.")}</p>
               <label>{t("Estimated number of guests")}<input type="number" inputMode="numeric" min={11} max={999} step={1} required value={details.guests || ""} onChange={event => update("guests", Number(event.target.value))} /></label>
               <div className="group-size-shortcuts" aria-label={t("Quick group sizes")}>{[15, 30, 60].map(size => <button type="button" key={size} aria-pressed={details.guests === size} onClick={() => update("guests", size)}>{countText(size, "guest")}</button>)}</div>
               <div className="booking-flexibility"><label><input type="checkbox" checked={details.flexibleDate} onChange={event => update("flexibleDate", event.target.checked)} />{t("We can consider another date")}</label><label><input type="checkbox" checked={details.flexibleTime} onChange={event => setDetails(current => ({ ...current, flexibleTime: event.target.checked, time: "" }))} />{t("Our arrival time is flexible")}</label></div>
-              <div className="contact-fields"><label>{t("Occasion")} <span className="field-optional">{t("(optional)")}</span><select value={details.occasion} onChange={event => update("occasion", event.target.value)}><option value="">{t("Select an occasion")}</option>{groupOccasions.map(value => <option key={value} value={value}>{t(occasionLabels[value])}</option>)}</select></label>
-                <label>{t("Menu preference")}<select value={details.menu} onChange={event => update("menu", event.target.value)}>{groupMenus.map(value => <option key={value} value={value}>{t(menuLabels[value])}</option>)}</select></label></div>
-              <label>{t("Budget per person (RON)")} <span className="field-optional">{t("(optional)")}</span><input type="number" inputMode="decimal" min={1} max={99999} step="0.01" value={details.budget} onChange={event => update("budget", event.target.value)} /><span className="form-guidance">{t("A guide for our conversation, not an agreed price.")}</span></label>
+              <label>{t("Occasion")} <span className="field-optional">{t("(optional)")}</span><select value={details.occasion} onChange={event => update("occasion", event.target.value)}><option value="">{t("Select an occasion")}</option>{groupOccasions.map(value => <option key={value} value={value}>{t(occasionLabels[value])}</option>)}</select></label>
             </fieldset>}
             {error && <p className="service-form-error" role="alert" ref={errorBox} tabIndex={-1}>{t(error)}</p>}
             <p className="form-guidance">{t("Times follow our opening hours. Sending a request does not guarantee a table.")}</p>

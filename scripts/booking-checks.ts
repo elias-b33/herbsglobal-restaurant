@@ -7,8 +7,8 @@ import { submitBooking } from "../app/lib/booking-delivery";
 const origin = "https://restaurant.example";
 const now = new Date("2026-10-19T13:00:00Z");
 const setup = { recipient: "bookings@example.test", formUrl: `${origin}/book`, platform: "vercel" as const };
-const valid = { date: "2026-10-24", time: "1080", guests: 2, name: "Test Guest", email: "guest@example.test", phone: "+40700000000", notes: "", flexibleDate: false, flexibleTime: false, occasion: "", menu: "unsure", budget: "" };
-const group = { ...valid, guests: 60, occasion: "company", flexibleDate: true, flexibleTime: true, time: "", menu: "discuss", budget: "150.50", notes: "We would like to sit together." };
+const valid = { date: "2026-10-24", time: "1080", guests: 2, name: "Test Guest", email: "guest@example.test", phone: "+40700000000", notes: "", flexibleDate: false, flexibleTime: false, occasion: "" };
+const group = { ...valid, guests: 60, occasion: "company", flexibleDate: true, flexibleTime: true, time: "", notes: "We would like to sit together." };
 const request = (changes: Record<string, unknown> = {}, headers: Record<string, string> = {}) => new Request(`${origin}/api/bookings`, {
   method: "POST", headers: { Origin: origin, "Content-Type": "application/json", "x-vercel-forwarded-for": "192.0.2.1", ...headers },
   body: JSON.stringify({ ...valid, website: "", requestId: crypto.randomUUID(), ...changes }),
@@ -27,8 +27,10 @@ test("Only groups may request flexible times; stale group details are removed fr
   assert.ok(validateBooking({ ...group, guests: 10 }, now).error);
   const small = validateBooking({ ...group, time: "1080", guests: 2 }, now).data!;
   assert.equal(small.flexibleTime, false); assert.equal(small.flexibleDate, false);
-  assert.equal(small.menu, ""); assert.equal(small.budget, ""); assert.equal(small.occasion, "");
-  for (const change of [{ occasion: "invented" }, { menu: "invented" }, { budget: "-5" }, { budget: "NaN" }]) assert.ok(validateBooking({ ...group, ...change }, now).error);
+  assert.equal(small.occasion, "");
+  assert.ok(validateBooking({ ...group, occasion: "invented" }, now).error);
+  const legacy = validateBooking({ ...group, menu: "discuss", budget: "150.50" }, now).data!;
+  assert.ok(legacy); assert.equal("menu" in legacy, false); assert.equal("budget" in legacy, false);
 });
 
 test("Booking email clearly requests manual confirmation and preserves overnight times", () => {
@@ -40,7 +42,7 @@ test("Booking email clearly requests manual confirmation and preserves overnight
   assert.equal(email._replyto, valid.email);
   const large = bookingEmail(validateBooking(group, now).data!, "GH-TEST", setup.formUrl);
   assert.match(large._subject, /GROUP ENQUIRY.*60 guests/);
-  assert.match(large["Budget per person"]!, /150.50 RON.*not an agreed price/);
+  assert.equal("Budget per person" in large, false); assert.equal("Menu preference" in large, false);
   assert.match(large["Preferred arrival"], /Flexible/);
 });
 
