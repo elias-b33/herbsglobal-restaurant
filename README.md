@@ -8,6 +8,14 @@ Node 22.13+ krävs. Installera beroenden med `npm ci` och kör `npm run dev -- -
 
 Kontroller: `node node_modules/typescript/bin/tsc --noEmit -p tsconfig.app.json` och `node scripts/check.mjs`. Bygg med `node scripts/run-framework.mjs build`.
 
+## Vercel
+
+`vercel.json` väljer Next.js, kör `npm ci` och `npm run build:vercel` och använder `.next` som byggresultat. Det ersätter Vercels automatiska ramverksdetektering; projektets vanliga `build`-kommando bygger fortfarande Cloudflare/Sites-versionen. Använd repots rot som Root Directory och `main` som produktionsgren i Vercel.
+
+Testa Vercel-versionen lokalt med `npm run build:vercel` följt av `npm run start:vercel -- --port 5187`, eller `npm run dev:vercel -- --port 5187` under utveckling. `tsconfig.next.json` kontrollerar applikationen och Next.js genererade ruttyper utan att blanda in de separata Cloudflare- och offlineverktygen. TypeScript-fel kontrolleras även i produktionsbygget.
+
+AI-rutten läser `OPENAI_API_KEY` och `OPENAI_MODEL` från serverns miljövariabler på båda plattformarna. På Vercel anges de i projektets Environment Variables och följs av en ny deployment. Saknas de visas fortsatt att AI inte är ansluten. Nycklar ska aldrig läggas i Git eller i `NEXT_PUBLIC_`-variabler. Vercel-versionen använder samma innehåll, språkförhandsvisningar och indexeringsregler som Sites-versionen; bokning och takeaway är fortfarande oskickade utkast.
+
 ## Det som fungerar
 
 - Mobilnavigation, anpassade layouter och tangentbordsvänliga dialoger.
