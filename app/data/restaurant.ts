@@ -20,6 +20,12 @@ export const restaurant = {
   menuChecked: "2026-10-18",
 };
 
+export const directions = {
+  google: `https://www.google.com/maps/dir/?${new URLSearchParams({ api: "1", destination: `${restaurant.name}, ${restaurant.address}` })}`,
+  // Restaurant pin verified in Google Maps on 2026-10-19; Apple's address search matched a different street.
+  apple: `https://maps.apple.com/?${new URLSearchParams({ daddr: "44.4300233,26.0975673" })}`,
+};
+
 // Week starts Sunday. A close time above 24:00 belongs to the following day.
 export const hours: Record<number, { open: number; close: number } | null> = {
   0: { open: 13 * 60, close: 25 * 60 },

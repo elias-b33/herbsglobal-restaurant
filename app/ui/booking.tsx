@@ -7,6 +7,7 @@ import { restaurant } from "../data/restaurant";
 import { displayDate, localDate, preferredTimes } from "../lib/service-drafts";
 import { groupMenus, groupOccasions, menuLabels, occasionLabels, validateBooking, type BookingRequest } from "../lib/booking-request";
 import { submitBooking } from "../lib/booking-delivery";
+import DirectionsLink from "./directions-link";
 
 const initialDetails: BookingRequest = { date: "", time: "", guests: 2, name: "", email: "", phone: "", notes: "", flexibleDate: false, flexibleTime: false, occasion: "", menu: "unsure", budget: "" };
 
@@ -114,7 +115,7 @@ export default function Booking() {
             <div className="booking-form-bottom"><button className="button button-green" type="submit">{t(group ? "Review group enquiry" : "Review table request")} <Icon name="arrow" size={18} /></button><p className="small">{t("You can check everything before sending.")}</p></div>
           </form>}
         </section>
-        <aside className="booking-visit" aria-labelledby="booking-visit-title"><img src="/assets/gallery-04-herbs-food-2.jpg" alt={t("Prawns and handmade dumplings at Global Herbs")} width="2048" height="1536" /><div className="booking-visit-copy"><p className="eyebrow">{t("A SEAT AT OUR TABLE")}</p><h2 id="booking-visit-title">Global Herbs</h2><p>{restaurant.building}<br />Str. Nicolae Tonitza 13<br />București 030167, Romania</p><a className="text-link" href={restaurant.maps} target="_blank" rel="noopener noreferrer">{t("Get directions")} <Icon name="external" size={16} /></a><div className="booking-hours"><h3>{t("Opening hours")}</h3><Hours /></div><p className="booking-contact">{t("A question about your visit?")}<br /><a href={restaurant.phoneHref}>{restaurant.phone}</a></p></div></aside>
+        <aside className="booking-visit" aria-labelledby="booking-visit-title"><img src="/assets/gallery-04-herbs-food-2.jpg" alt={t("Prawns and handmade dumplings at Global Herbs")} width="2048" height="1536" /><div className="booking-visit-copy"><p className="eyebrow">{t("A SEAT AT OUR TABLE")}</p><h2 id="booking-visit-title">Global Herbs</h2><p>{restaurant.building}<br />Str. Nicolae Tonitza 13<br />București 030167, Romania</p><DirectionsLink className="text-link">{t("Get directions")} <Icon name="external" size={16} /></DirectionsLink><div className="booking-hours"><h3>{t("Opening hours")}</h3><Hours /></div><p className="booking-contact">{t("A question about your visit?")}<br /><a href={restaurant.phoneHref}>{restaurant.phone}</a></p></div></aside>
       </div>
     </div>
   </main></SiteShell>;

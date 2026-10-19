@@ -22,6 +22,7 @@ AI-rutten läser `OPENAI_API_KEY` och `OPENAI_MODEL` från serverns miljövariab
 - Menysökning, 28 kategorier, 166 mat- och dryckesposter och favoriter som sparas lokalt på besökarens enhet.
 - Elva originalfoton i ett manuellt bläddringsbart galleri. Fullstora foton hämtas först när de öppnas.
 - Öppetstatus utifrån Europe/Bucharest, inklusive helgernas öppethållande efter midnatt.
+- Hitta hit-länkarna öppnar en vägbeskrivning till restaurangens adress: Apple Kartor på iPhone/iPad/Mac och Google Maps på övriga enheter. Även rubriken i sidfoten är klickbar. Google Maps är reservlänk innan JavaScript har laddats.
 - `/order` är en inbyggd takeaway-meny med sökning, kategorier, antal, varukorg och ordergranskning. Varukorgen är ett lokalt utkast på besökarens enhet, med priser från menyfilen. Varukorgen valideras när den återställs; priser hämtas aldrig från webbläsarlagringen. Mobilvyn har en genväg till varukorgen.
 - `/book` skickar bordsförfrågningar för 1–10 personer och gruppförfrågningar för 11 eller fler via `/api/bookings`. Gästen granskar först uppgifterna och väljer sedan att skicka. Tiderna följer publicerade öppettider, inklusive tisdagens stängning och helgernas tider efter midnatt. De påstås aldrig vara tillgängliga bord.
 - Båda sidorna använder samma navigation, typsnitt, färger och originalbilder som resten av webbplatsen. De innehåller inga iframes eller automatiska övergångar till den äldre Wix-webbplatsen.
