@@ -68,7 +68,31 @@ AI-protokollet följer [OpenAI Responses-dokumentationen](https://developers.ope
 
 ## Verifiering och drift
 
-- TypeScript och sexton tester för varukorgsvalidering, bokningsdatum, AI-validering, felhantering, begränsning av anrop, menyalternativ och öppettider.
+- TypeScript och 21 tester för språk, varukorg, bokningsdatum, AI, menyalternativ, öppettider och SEO. SEO-kontrollerna täcker även nattöppet, dolda språk, prisvarianter, indexeringsregler och säker JSON-LD-serialisering.
 - Webbläsarkontroll av sökning, varukorg, antal, summering, återställning, redigering, formulärvalidering och bokningsgranskning på dator och mobil. Inga riktiga beställningar, betalningar eller slutförda bokningar ska skickas som tester.
 - Ägaråtgärd: Wix visade bokningsbara tider från 11:00 måndag 19 oktober 2026, medan publicerade öppettider anger 15:00. Kontrollera bokningsschemat i Wix innan sidan delas med gäster.
 - Före aktivering ska restaurangen verifiera utbud för takeaway, priser, bokningsregler, meddelanden, betalningssätt och personuppgiftshantering. Granskningsstegen är för närvarande uttryckligen oskickade utkast.
+
+## SEO och synlighet i AI-sökning
+
+Optimeringen gäller **Global Herbs i Bukarest, Rumänien**. Sidans faktaunderlag är originalrestaurangens adress och telefon, nepalesiska kök, publicerade öppettider och meny. Inga betyg, recensioner, utmärkelser eller placeringar har lagts till. Kontakt och öppettider kontrollerades mot originalets startsida 19 oktober 2026; menypriserna har datumet i `restaurant.menuChecked`.
+
+- Startsidan och menyn har unika titlar och beskrivningar. Canonical och delningsmetadata är förberedda för `https://www.globalherbsrestaurantsandbar.com`.
+- Restaurant, WebSite och WebPage finns som JSON-LD. Menysidan har Menu, MenuSection och samtliga 166 MenuItem/Offer-poster, inklusive portion och pris i RON. Dessa hämtas från samma menyfil som gästerna läser. Varje rätt har en direkt ankarlänk. Filtrerade sök-URL:er annonserar ingen fullständig meny i JSON-LD.
+- Adress, telefon, officiella sociala profiler och öppettider delar sidans faktakällor. Tisdag är stängt. Lördagens och söndagens 01:00 avser följande morgon. Det finns inga påståenden om bokningsbara bord, beställningar eller allergensäker mat i strukturerade data.
+- Alla rätter finns i serverns HTML redan före JavaScript. Startsidan har en kort besöksdel med synliga svar om plats, mat, öppettider och kontakt. Den använder samma typsnitt och färger som resten av sidan och är även översatt till rumänska och nepali.
+
+**Nuvarande status: privat förhandsvisning.** `app/data/search-config.ts` har `publicLaunch: false`. HTML är `noindex`; robots.txt stoppar genomsökning och sitemap.xml listar ännu inga adresser. Det undviker att arbetskopian börjar konkurrera med restaurangens riktiga webbplats. SEO-koden är färdig att aktivera vid lansering, men ändrar inte den nuvarande Wix-sidan, Google Företagsprofil eller vem som kan se Sites-versionen.
+
+Vid en godkänd offentlig lansering behöver webbansvarig:
+
+1. Kontrollera namn, adress, telefon, samtliga öppettider, priser och aktuell meny med ägaren. Behåll befintliga fungerande Wix-tjänster och adresser under flytten; de nya order- och bokningssidorna är ännu utkast.
+2. Driftsätta på den officiella domänen, ordna omdirigeringar för gamla URL:er och välja en enda huvudadress för www/utan www. Canonical-domänen i `search-config.ts` ska motsvara den faktiska domänen och bildernas URL:er måste fungera där.
+3. Sätta `publicLaunch: true`, bygga och publicera. Startsidan och `/menu` får då indexeras och finns i sitemap.xml. `robots.txt` tillåter vanliga sökrobotar och OAI-SearchBot, men inte API-rutter. Order/bokning samt `q`- och `lang`-förhandsvisningar förblir `noindex`. Först efter språkgranskning och ett separat beslut bör översättningarna få indexeras och läggas till i hreflang/sitemap. Ingen språkknapp har lagts till.
+4. Kontrollera att hosting, brandvägg och inloggningsskydd faktiskt släpper fram offentliga besökare och sökrobotar. Att bara ändra robots.txt öppnar inte en privat Sites-sida.
+5. Verifiera domänen i Google Search Console och Bing Webmaster Tools, skicka in `/sitemap.xml` och kontrollera hemsidan och menyn med URL-granskning. Granska Restaurant-markeringen i Googles Rich Results Test. Följ upp indexering och sökvisningar; ingen viss placering kan garanteras.
+6. Se över restaurangens Google Företagsprofil: rätt kategori, adress, telefon, menyadress, öppettider och egna foton. Be verkliga gäster om ärliga recensioner och svara på dem. Kontrollera samma grunduppgifter på restaurangens sociala profiler och lokala kataloger.
+
+Tekniska kontroller mot en körande förhandsvisning: `node scripts/check-seo-pages.mjs http://127.0.0.1:5187`. Efter den offentliga lanseringen: `node scripts/check-seo-pages.mjs https://www.globalherbsrestaurantsandbar.com --public`. Kontrollen läser endast sidor, metadata, meny och indexeringsfiler; den skickar inga formulär och gör inga AI-anrop.
+
+Google beskriver att [vanlig SEO och läsbart, pålitligt innehåll även gäller för AI-sökning](https://developers.google.com/search/docs/appearance/ai-features). OpenAI beskriver [OAI-SearchBot som sökroboten för ChatGPT](https://developers.openai.com/api/docs/bots); tillgång till den innebär ingen garanti om rekommendationer. [Google Företagsprofil](https://support.google.com/business/answer/7091?hl=sv) beskriver relevans, avstånd och popularitet som faktorer för lokal synlighet. [Bing](https://www.bing.com/webmasters/help/bing-webmaster-guidelines-30fba23a) rekommenderar läsbart innehåll, interna länkar och en aktuell sitemap för sök- och AI-upplevelser. Webbplatsen behöver ingen påhittad AI-ranking, dold reklamtext eller särskild AI-textfil för detta.

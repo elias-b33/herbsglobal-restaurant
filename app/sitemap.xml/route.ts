@@ -1,0 +1,5 @@
+import { sitemapXml } from "../lib/seo";
+
+export function GET() {
+  return new Response(sitemapXml(), { headers: { "Content-Type": "application/xml; charset=utf-8", "Cache-Control": "public, max-age=300" } });
+}

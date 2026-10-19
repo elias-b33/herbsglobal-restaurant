@@ -8,6 +8,69 @@ import { formatCount, formatMoney, localizedHref, matchesMenuSearch, pageLocale,
 import { translations } from "../app/data/translations";
 import { menuTranslations, originalProductNames } from "../app/data/menu-translations";
 import { gallery } from "../app/data/restaurant";
+import { canonicalUrl, jsonLd, menuSchema, restaurantSchema, robotsText, searchIndexable, sitemapXml, structuredData } from "../app/lib/seo";
+import { pageMetadata } from "../app/lib/page-metadata";
+
+test("Search launch excludes draft forms, filters and unlisted translations", () => {
+  assert.equal(searchIndexable("/", "en"), false);
+  assert.equal(searchIndexable("/menu", "en", {}, true), true);
+  assert.equal(searchIndexable("/", "en", {}, true), true);
+  for (const path of ["/order", "/book", "/api/assistant", "/missing"]) assert.equal(searchIndexable(path, "en", {}, true), false);
+  for (const params of [{ lang: "ne" }, { lang: ["ro", "ne"] }, { lang: "fr" }, { q: "momo" }, { q: "" }]) assert.equal(searchIndexable("/menu", "en", params, true), false);
+  for (const locale of ["ro", "ne"] as const) assert.equal(searchIndexable("/menu", locale, {}, true), false);
+  assert.deepEqual([...sitemapXml(true).matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]), [canonicalUrl("/"), canonicalUrl("/menu")]);
+  assert.doesNotMatch(sitemapXml(), /<loc>/);
+  assert.match(robotsText(), /Disallow: \/\n/);
+  assert.match(robotsText(true), /User-agent: OAI-SearchBot\nAllow: \/\nDisallow: \/api\//);
+});
+
+test("Restaurant data keeps the verified identity and overnight opening hours", () => {
+  const entity = restaurantSchema();
+  assert.equal(entity.address.addressLocality, "București");
+  assert.equal(entity.address.addressCountry, "RO");
+  assert.equal(entity.telephone, "+40734293050");
+  const opening = (day: string) => entity.openingHoursSpecification.find(item => item.dayOfWeek.endsWith(day));
+  assert.equal(opening("Monday")?.closes, "00:00");
+  assert.equal(opening("Tuesday")?.opens, "00:00");
+  assert.equal(opening("Tuesday")?.closes, "00:00");
+  assert.equal(opening("Saturday")?.opens, "13:00");
+  assert.equal(opening("Saturday")?.closes, "01:00");
+  assert.doesNotMatch(JSON.stringify(entity), /aggregateRating|reviewRating|ReserveAction|OrderAction|geo/);
+});
+
+test("Menu structured data preserves each portion, currency and actual price", () => {
+  for (const locale of ["en", "ro", "ne"] as const) {
+    const entries = menuSchema(locale).hasMenuSection.flatMap(section => section.hasMenuItem);
+    assert.equal(entries.length, 166);
+    assert.equal(new Set(entries.map(item => item["@id"])).size, 166);
+    for (const item of menu) {
+      const entity = entries.find(value => value["@id"].endsWith(`#dish-${item.id}`))!;
+      assert.equal(entity.name, translate(locale, item.name));
+      assert.equal(entity.description, item.portion ? translate(locale, item.portion) : undefined);
+      assert.equal(entity.offers.price, item.price);
+      assert.equal(entity.offers.priceCurrency, "RON");
+    }
+  }
+  assert.equal(structuredData("menu", "en", true)["@graph"].some(value => (value as { "@type": string })["@type"] === "Menu"), false);
+});
+
+test("Metadata uses the official domain and preserves hidden language previews", async () => {
+  const normal = await pageMetadata("menu", {});
+  const preview = await pageMetadata("menu", { searchParams: Promise.resolve({ lang: "ro", q: "pui" }) });
+  assert.equal(normal.alternates?.canonical, "https://www.globalherbsrestaurantsandbar.com/menu");
+  assert.equal(preview.alternates?.canonical, normal.alternates?.canonical);
+  assert.equal(preview.alternates?.languages, undefined);
+  assert.match(JSON.stringify(preview.title), /București/);
+  assert.equal((preview.robots as { index: boolean }).index, false);
+  assert.equal((normal.robots as { index: boolean }).index, false);
+});
+
+test("Structured data cannot break out of its script element", () => {
+  const payload = { name: '</script><script>alert("dish")</script>' };
+  const encoded = jsonLd(payload);
+  assert.doesNotMatch(encoded, /</);
+  assert.deepEqual(JSON.parse(encoded), payload);
+});
 
 test("Languages are explicit opt-ins and links preserve searches and anchors", async () => {
   assert.equal(await pageLocale(undefined), "en");

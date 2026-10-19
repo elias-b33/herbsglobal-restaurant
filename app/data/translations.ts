@@ -1,6 +1,21 @@
 // English is the public default. Each entry contains Romanian, then Nepali.
 // Restaurant and product names stay recognisable; prices and ingredients are never translated into new facts.
 export const translations: Record<string, readonly [string, string]> = {
+  "NEPALI RESTAURANT & BAR · BUCHAREST": ["RESTAURANT NEPALEZ & BAR · BUCUREȘTI", "नेपाली रेस्टुरेन्ट र बार · बुखारेस्ट"],
+  "NEPALI COOKING IN BUCHAREST": ["BUCĂTĂRIE NEPALEZĂ ÎN BUCUREȘTI", "बुखारेस्टमा नेपाली खाना"],
+  "Planning your visit": ["Planifică-ți vizita", "आफ्नो भ्रमणको योजना बनाउनुहोस्"],
+  "A few things to know before you join us.": ["Câteva lucruri de știut înainte să ne vizitezi.", "हामीकहाँ आउनुअघि जान्नुपर्ने केही कुरा।"],
+  "Where can I find Global Herbs?": ["Unde se află Global Herbs?", "Global Herbs कहाँ छ?"],
+  "What food do you serve?": ["Ce fel de mâncare serviți?", "तपाईंहरू कस्तो खाना दिनुहुन्छ?"],
+  "Our Nepali menu includes mo:mo dumplings, curries, dal bhat and biryani, alongside drinks from the bar. Browse the menu for dishes, portions and prices in RON.": ["Meniul nostru nepalez include găluște mo:mo, curry, dal bhat și biryani, alături de băuturi de la bar. Consultă meniul pentru preparate, porții și prețuri în RON.", "हाम्रो नेपाली मेनुमा म:म, करी, दालभात र बिरयानीका साथै बारका पेय पदार्थहरू छन्। परिकार, परिमाण र RON मा मूल्यका लागि मेनु हेर्नुहोस्।"],
+  "Weekend closing time is 01:00 the following morning.": ["În weekend închidem la 01:00 în dimineața următoare.", "सप्ताहन्तमा अर्को दिन बिहान ०१:०० बजे बन्द हुन्छ।"],
+  "Can I ask about ingredients or a table?": ["Pot întreba despre ingrediente sau o masă?", "सामग्री वा टेबलबारे सोध्न सक्छु?"],
+  "Please call our team to discuss ingredients, allergens or a table before your visit. The restaurant will confirm your arrangements directly.": ["Sună echipa noastră înainte de vizită pentru întrebări despre ingrediente, alergeni sau o masă. Restaurantul va confirma direct detaliile.", "आउनुअघि सामग्री, एलर्जी गराउन सक्ने पदार्थ वा टेबलबारे कुरा गर्न हाम्रो टोलीलाई फोन गर्नुहोस्। रेस्टुरेन्टले व्यवस्था सिधै पुष्टि गर्नेछ।"],
+  "Nepali restaurant and bar on Str. Nicolae Tonitza 13, Bucharest. Explore mo:mo, curries, dal bhat and drinks, with menu prices and opening hours.": ["Restaurant nepalez și bar pe Str. Nicolae Tonitza 13, București. Descoperă mo:mo, curry, dal bhat și băuturi, cu prețurile din meniu și programul.", "बुखारेस्टको Str. Nicolae Tonitza 13 मा नेपाली रेस्टुरेन्ट र बार। म:म, करी, दालभात र पेय पदार्थ, मेनुका मूल्य र खुल्ने समय हेर्नुहोस्।"],
+  "Nepali food & drinks menu in Bucharest · Global Herbs": ["Meniu nepalez de mâncare și băuturi în București · Global Herbs", "बुखारेस्टमा नेपाली खाना र पेय पदार्थको मेनु · Global Herbs"],
+  "Browse the Global Herbs menu: mo:mo, curries, dal bhat, biryani and drinks. See portions and prices in RON at our Nepali restaurant in Bucharest.": ["Consultă meniul Global Herbs: mo:mo, curry, dal bhat, biryani și băuturi. Vezi porțiile și prețurile în RON la restaurantul nostru nepalez din București.", "Global Herbs को मेनु हेर्नुहोस्: म:म, करी, दालभात, बिरयानी र पेय पदार्थ। बुखारेस्टको हाम्रो नेपाली रेस्टुरेन्टमा परिमाण र RON मा मूल्य हेर्नुहोस्।"],
+  "Takeaway menu preview · Global Herbs, Bucharest": ["Previzualizare meniu la pachet · Global Herbs, București", "लैजाने खानाको मेनुको पूर्वावलोकन · Global Herbs, बुखारेस्ट"],
+  "Plan your visit · Global Herbs, Bucharest": ["Planifică-ți vizita · Global Herbs, București", "आफ्नो भ्रमणको योजना बनाउनुहोस् · Global Herbs, बुखारेस्ट"],
   "Skip to content": ["Sari la conținut", "मुख्य सामग्रीमा जानुहोस्"],
   "Global Herbs home": ["Global Herbs — Acasă", "Global Herbs — गृहपृष्ठ"],
   "Close navigation": ["Închide meniul de navigare", "नेभिगेसन बन्द गर्नुहोस्"],

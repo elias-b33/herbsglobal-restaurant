@@ -211,6 +211,21 @@
 }
 
 /* Language previews retain the original typography, with matching Devanagari fallbacks. */
+.visit-info{padding-block:82px 90px;display:grid;grid-template-columns:.8fr 1.2fr;gap:80px}
+.visit-info-heading h2{font-size:48px;line-height:1.1;margin:12px 0 20px}
+.visit-info-heading>p:last-child{max-width:280px;color:var(--muted);line-height:1.8}
+.visit-questions details{border-top:1px solid var(--line)}
+.visit-questions details:last-child{border-bottom:1px solid var(--line)}
+.visit-questions summary{cursor:pointer;font-family:var(--serif);font-size:27px;line-height:1.25;padding:21px 35px 21px 0;position:relative;list-style:none}
+.visit-questions summary::-webkit-details-marker{display:none}
+.visit-questions summary:after{content:'+';position:absolute;right:2px;top:23px;font-family:var(--sans);font-size:20px}
+.visit-questions details[open]>summary:after{content:'−'}
+.visit-questions details>div{padding:0 30px 25px 0;font-size:16px;line-height:1.8}
+.visit-questions details>div>p{margin:0 0 16px}
+.visit-questions .hours-list{max-width:400px}
+.visit-questions .hours-list+p{margin-top:18px}
+.visit-questions .text-link{font-size:15px}
+@media(max-width:900px){.visit-info{grid-template-columns:1fr;gap:25px;padding-block:56px 60px}.visit-info-heading h2{font-size:40px}.visit-info-heading>p:last-child{max-width:none}.visit-questions summary{font-size:26px}.visit-questions details>div{padding-right:10px}}
 .language-root:lang(ne){--sans:Avenir,'Noto Sans Devanagari','Segoe UI',sans-serif;--serif:Cormorant,'Noto Serif Devanagari',Georgia,serif;font-family:var(--sans)}
 .language-root:lang(ne) h1,.language-root:lang(ne) h2,.language-root:lang(ne) .hero-intro{line-height:1.45}
 .language-root:lang(ne) .hero h1{line-height:.98}
