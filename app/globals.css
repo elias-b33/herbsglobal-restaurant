@@ -254,7 +254,8 @@
 
 /* A visible language choice, with the same quiet green and gold styling. */
 .language-switcher{display:block;flex:0 0 132px;font-family:Avenir,'Noto Sans Devanagari','Segoe UI',sans-serif}
-.language-switcher>span{display:flex;align-items:center;gap:7px;font-size:12px;line-height:1.4;color:var(--gold);margin-bottom:5px}
+.language-switcher>span{display:flex;align-items:center;gap:7px;font-size:16px;font-weight:600;line-height:1.4;color:var(--cream);margin-bottom:5px}
+.language-switcher>span svg{color:var(--gold)}
 .language-switcher select{display:block;width:100%;min-height:44px;padding:8px 10px;border:1px solid var(--gold);border-radius:0;background:var(--green);color:var(--cream);font:inherit;font-size:16px;line-height:1.4;cursor:pointer;color-scheme:dark}
 .language-switcher select:hover{background:#214e26}
 @media(min-width:1151px){.header-inner{gap:24px}.main-nav{gap:22px}}
@@ -276,7 +277,7 @@
   .header-book{grid-column:2;grid-row:1;justify-self:end;margin:0}
   .mobile-toggle{grid-column:3;grid-row:1;margin:0}
   .language-switcher{grid-column:1/-1;grid-row:2;display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0;padding-top:9px;border-top:1px solid #547044}
-  .language-switcher>span{font-size:14px;margin:0}
+  .language-switcher>span{font-size:18px;margin:0}
   .language-switcher select{width:155px}
   .main-nav{padding-inline:20px}
 }
