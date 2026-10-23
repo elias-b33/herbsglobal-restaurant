@@ -256,6 +256,12 @@
 .language-switcher{display:block;flex:0 0 132px;font-family:Avenir,'Noto Sans Devanagari','Segoe UI',sans-serif}
 .language-switcher>span{display:flex;align-items:center;gap:7px;font-size:16px;font-weight:600;line-height:1.4;color:var(--cream);margin-bottom:5px}
 .language-switcher>span svg{color:var(--gold)}
+.social-icons{display:flex;flex-wrap:wrap;gap:5px;background:var(--gold);color:#080b06;width:max-content;max-width:100%;padding:5px}
+.social-icons a{display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0;transition:opacity .15s}
+.social-icons a:hover{opacity:.65}
+.social-icons a:focus-visible{outline-offset:-3px}
+.social-rail{display:none}
+@media(min-width:1280px){.social-rail{display:flex;position:fixed;right:0;top:190px;z-index:10;flex-direction:column;width:44px;padding:8px 0;gap:15px}}
 .language-switcher select{display:block;width:100%;min-height:44px;padding:8px 10px;border:1px solid var(--gold);border-radius:0;background:var(--green);color:var(--cream);font:inherit;font-size:16px;line-height:1.4;cursor:pointer;color-scheme:dark}
 .language-switcher select:hover{background:#214e26}
 @media(min-width:1151px){.header-inner{gap:24px}.main-nav{gap:22px}}

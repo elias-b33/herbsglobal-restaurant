@@ -7,6 +7,7 @@ import { openingStatus } from "../lib/opening";
 import { resolveLocale } from "../lib/i18n";
 import Assistant from "./assistant";
 import DirectionsLink from "./directions-link";
+import SocialLinks from "./social-links";
 
 export function Icon({ name, size = 20 }: { name: string; size?: number }) {
   const paths: Record<string, ReactNode> = {
@@ -56,7 +57,7 @@ function Header({ active }: { active: "home" | "menu" | "order" | "book" }) {
       </nav>
       <label className="language-switcher"><span><Icon name="globe" size={17} />{t("Language")}</span>
         <select aria-label={t("Choose language")} value={locale} onChange={event => changeLanguage(resolveLocale(event.target.value))}>
-          <option value="en" lang="en">English</option><option value="ro" lang="ro">Română</option><option value="ne" lang="ne">नेपाली</option>
+          <option value="en" lang="en">English</option><option value="ro" lang="ro">Română</option><option value="ne" lang="ne">नेपाली</option><option value="es" lang="es">Español</option><option value="de" lang="de">Deutsch</option>
         </select>
       </label>
       <a className="button button-gold header-book" href={l("/book")} aria-current={active === "book" ? "page" : undefined}>{t("Book a table")}</a>
@@ -82,10 +83,10 @@ function Footer() {
     <section className="footer-hours"><h2>{t("Opening hours")}</h2><Hours /><p className="small muted">{t("Local time in Bucharest")}</p></section>
     <section><h2><DirectionsLink className="footer-directions-title">{t("Come find us")} <Icon name="external" size={18} /></DirectionsLink></h2><p>{restaurant.building}<br />Str. Nicolae Tonitza 13<br />București 030167, Romania</p><DirectionsLink className="text-link">{t("Get directions")} <Icon name="external" size={15} /></DirectionsLink></section>
     <section><h2>{t("Let’s talk")}</h2><a className="phone-link" href={restaurant.phoneHref}>{restaurant.phone}</a><a className="text-link" href={l("/book")}>{t("Make a reservation")} <Icon name="arrow" size={16} /></a><button className="text-link" onClick={() => openDialog("assistant-dialog")}>{t("AI menu assistant")} <Icon name="chat" size={16} /></button></section>
-    <section><h2>{t("Follow along")}</h2><a className="social-link" href={restaurant.instagram} target="_blank" rel="noopener noreferrer">Instagram <Icon name="external" size={14} /></a><a className="social-link" href={restaurant.facebook} target="_blank" rel="noopener noreferrer">Facebook <Icon name="external" size={14} /></a><a className="social-link" href={restaurant.tiktok} target="_blank" rel="noopener noreferrer">TikTok <Icon name="external" size={14} /></a><a className="social-link" href={restaurant.experiences} target="_blank" rel="noopener noreferrer">{t("Experiences")} <Icon name="external" size={14} /></a></section>
+    <section><h2>{t("Follow along")}</h2><SocialLinks /></section>
   </div><div className="footer-bottom container"><span>{t("Global Herbs · Restaurant & Bar")}</span><span>{t("Nepali flavours. Bucharest hospitality.")}</span><a href="#top">{t("Back to top ↑")}</a></div></footer>;
 }
 
 export default function SiteShell({ active, children }: { active: "home" | "menu" | "order" | "book"; children: ReactNode }) {
-  return <div id="top"><Header active={active} />{children}<Footer /><Assistant /></div>;
+  return <div id="top"><Header active={active} /><SocialLinks rail />{children}<Footer /><Assistant /></div>;
 }

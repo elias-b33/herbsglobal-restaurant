@@ -1,16 +1,19 @@
 import { translations } from "../data/translations";
 import { menuTranslations } from "../data/menu-translations";
+import { europeanTranslations } from "../data/european-translations";
 
-export const locales = ["en", "ro", "ne"] as const;
+export const locales = ["en", "ro", "ne", "es", "de"] as const;
 export type Locale = typeof locales[number];
-export const intlLocales: Record<Locale, string> = { en: "en-GB", ro: "ro-RO", ne: "ne-NP" };
-export function resolveLocale(value: unknown): Locale { return value === "ro" || value === "ne" ? value : "en"; }
+export const intlLocales: Record<Locale, string> = { en: "en-GB", ro: "ro-RO", ne: "ne-NP", es: "es-ES", de: "de-DE" };
+export function isLocale(value: unknown): value is Locale { return locales.some(locale => locale === value); }
+export function resolveLocale(value: unknown): Locale { return isLocale(value) ? value : "en"; }
 export type LocalePageProps = { searchParams?: Promise<Record<string, string | string[] | undefined>> };
 export async function pageLocale(searchParams: LocalePageProps["searchParams"]) { return resolveLocale((await searchParams)?.lang); }
 
 export function translate(locale: Locale, key: string, values: Record<string, string | number> = {}): string {
   const translated = translations[key] ?? menuTranslations[key];
-  const message = locale === "en" || !translated ? key : translated[locale === "ro" ? 0 : 1];
+  const message = locale === "es" || locale === "de" ? europeanTranslations[key]?.[locale === "es" ? 0 : 1] ?? key
+    : locale === "en" || !translated ? key : translated[locale === "ro" ? 0 : 1];
   return message.replace(/\{(\w+)\}/g, (placeholder, name: string) => String(values[name] ?? placeholder));
 }
 

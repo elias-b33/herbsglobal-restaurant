@@ -25,7 +25,7 @@ export async function handleAssistant(request: Request, settings: Settings, fetc
   try { parsed = JSON.parse(body); } catch { return json({ message: "Please send a valid question." }, 400); }
   if (!parsed || !Array.isArray(parsed.messages) || parsed.messages.length < 1 || parsed.messages.length > 8 || !parsed.messages.every(m => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string" && m.content.trim().length > 0 && m.content.length <= 1000) || parsed.messages.at(-1).role !== "user") return json({ message: "Please send a question of up to 1,000 characters." }, 400);
   const messages = parsed.messages as ChatMessage[];
-  const language = { en: "English", ro: "Romanian", ne: "Nepali (Devanagari script)" }[resolveLocale(request.headers.get("x-site-language"))];
+  const language = { en: "English", ro: "Romanian", ne: "Nepali (Devanagari script)", es: "Spanish", de: "German" }[resolveLocale(request.headers.get("x-site-language"))];
   const now = Date.now();
   for (const [id, window] of windows) if (window.expires < now) windows.delete(id);
   const visitor = request.headers.get("oai-authenticated-user-id") ?? request.headers.get("cf-connecting-ip") ?? "local";

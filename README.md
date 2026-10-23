@@ -42,15 +42,15 @@ Mottagare och formulärets adress konfigureras i `app/api/bookings/route.ts`. Se
 
 ## Språkval
 
-Engelska är standardspråk. Ett synligt språkval i sidhuvudet erbjuder **English**, **Română** och **नेपाली**. På mobilen ligger det på en egen rad, synlig även när navigationsmenyn är stängd. Rumänska (`ro`) och nepali (`ne`, devanagarisk skrift) finns på startsidan, menyn, takeaway- och bokningssidorna samt i AI-panelen.
+Engelska är standardspråk. Ett synligt språkval i sidhuvudet erbjuder **English**, **Română**, **नेपाली**, **Español** och **Deutsch**. På mobilen ligger det på en egen rad, synlig även när navigationsmenyn är stängd. Alla fem språk finns på startsidan, menyn, takeaway- och bokningssidorna samt i AI-panelen.
 
-Språkvalet uppdaterar texten direkt, utan att radera bokningsuppgifter, menyfilter eller varukorg. Valet följer med i adressen som `?lang=ro` eller `?lang=ne`, till exempel `/menu?lang=ro`. Interna länkar behåller språket, övriga sökparametrar och ankarlänkar. Engelska tar bort språkparametern. Direktlänkar och omladdning renderas på servern på valt språk; sidtitlar och tillgänglighetsetiketter följer samma språk. Okända eller upprepade språkparametrar faller tillbaka till engelska. Ingen automatisk språkdetektering eller separat lagring av språkpreferensen används. Indexering och canonical följer webbplatsens befintliga lanseringsregler.
+Språkvalet uppdaterar texten direkt, utan att radera bokningsuppgifter, menyfilter eller varukorg. Det sparas i localStorage under `global-herbs-language` och återställs på samma webbplats i samma webbläsare vid nästa besök. Ett giltigt uttryckligt `?lang=ro`, `?lang=ne`, `?lang=es`, `?lang=de` eller `?lang=en` prioriteras och sparas som nytt val. Interna länkar behåller språk, sökparametrar och ankare. Engelska tar bort språkparametern. Om lagring blockeras fungerar språkbytet ändå för besöket. Ingen automatisk språkdetektering används. Direktlänkar renderas på servern på valt språk; det sparade valet återställs efter hydrering. Indexering och canonical följer befintliga lanseringsregler.
 
-`app/data/translations.ts` och `app/data/menu-translations.ts` innehåller översättningarna. Produktnamn för internationella drycker behålls. Meny-ID:n, priser, mängder och sparade favoriter/varukorgar delas mellan språken. Sökningen accepterar både originalnamn och översatta namn, även rumänska utan diakritiska tecken, och behåller nepaliska vokaltecken. Datum använder gregoriansk kalender och tider fortsätter följa Europe/Bucharest. Priserna är alltid i RON.
+`app/data/translations.ts`, `menu-translations.ts` och `booking-translations.ts` innehåller rumänska/nepali; `european-translations.ts`, `european-menu-translations.ts` och `european-booking-translations.ts` innehåller spanska/tyska. Produktnamn för internationella drycker behålls. Meny-ID:n, priser, mängder och sparade favoriter/varukorgar delas mellan språken. Sökningen accepterar både originalnamn och översatta namn utan latinska diakritiska tecken och behåller nepaliska vokaltecken. Datum använder gregoriansk kalender och tider följer Europe/Bucharest. Priserna är alltid i RON.
 
 Noto Sans/Serif Devanagari laddas från egna fontfiler bara där skriften behöver dem; originalets Avenir/Cormorant används fortsatt för latinsk text. SIL OFL-licenserna finns i `public/licenses/` och källorna i `asset-sources.json`. AI-panelen skickar en validerad språkpreferens när assistenten är aktiverad; språkstödet aktiverar inte AI eller boknings-/ordermottagningen.
 
-Översättningarna kan granskas via direktlänkarna innan en språkknapp läggs till. Den tidigare levererade lokala ZIP-versionen är oförändrad.
+Sociala länkar visas som ikoner med läsbara tillgänglighetsnamn: lodrätt i högermarginalen på breda skärmar och i sidfoten på alla skärmstorlekar. Samtliga använder oförändrade adresser från `app/data/restaurant.ts`. Den tidigare levererade lokala ZIP-versionen är oförändrad.
 
 ## AI-stöd och aktivering
 
